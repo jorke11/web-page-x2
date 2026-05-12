@@ -1,3 +1,19 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Términos y Condiciones",
+  description:
+    "Lee los términos y condiciones de uso del software X2 para lavaderos. Información sobre cuentas, pagos, suscripciones y facturación electrónica.",
+  alternates: {
+    canonical: "https://x2control.com/terminos/",
+  },
+  openGraph: {
+    title: "Términos y Condiciones | X2",
+    description: "Términos y condiciones de uso del software X2 para lavaderos.",
+    url: "https://x2control.com/terminos/",
+  },
+};
+
 export default function Terminos() {
   return (
     <div className="min-h-screen bg-white">

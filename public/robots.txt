@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://x2control.com/sitemap.xml
+
+User-agent: Google-Extended
+Disallow:

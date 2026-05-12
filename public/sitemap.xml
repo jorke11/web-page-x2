@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://x2control.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/"/>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://x2control.com/og-image.png</image:loc>
+      <image:title>X2 - Software para Lavaderos</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://x2control.com/terminos/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/terminos/"/>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/privacidad/"/>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

@@ -1,3 +1,19 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Política de Privacidad",
+  description:
+    "Política de privacidad de X2. Cómo recopilamos, usamos y protegemos tu información personal en nuestro software para lavaderos.",
+  alternates: {
+    canonical: "https://x2control.com/privacidad/",
+  },
+  openGraph: {
+    title: "Política de Privacidad | X2",
+    description: "Política de privacidad de X2 - Software para lavaderos.",
+    url: "https://x2control.com/privacidad/",
+  },
+};
+
 export default function Privacidad() {
   return (
     <div className="min-h-screen bg-white">
