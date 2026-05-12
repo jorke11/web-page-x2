@@ -1,14 +1,79 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    telefono: '',
+    negocio: '',
+    mensaje: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    const re = /^\+?[\d\s\-()]{10,}$/;
+    return re.test(phone.replace(/\s/g, ''));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!formData.nombre.trim()) {
+      setError('Por favor ingresa tu nombre');
+      return;
+    }
+    if (!formData.telefono.trim()) {
+      setError('Por favor ingresa tu teléfono');
+      return;
+    }
+    if (!validatePhone(formData.telefono)) {
+      setError('Por favor ingresa un número de teléfono válido');
+      return;
+    }
+    if (!formData.negocio.trim()) {
+      setError('Por favor ingresa el nombre del negocio');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('https://ws.x2control.com/api/register-prospect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        setFormData({ nombre: '', telefono: '', negocio: '', mensaje: '' });
+      } else {
+        setError('Error al enviar la solicitud. Intenta de nuevo.');
+      }
+    } catch (err) {
+      setError('Error de conexión. Intenta de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="X2" width={40} height={40} className="rounded-lg" />
-              <span className="text-xl font-bold text-gray-900">X2</span>
-            </div>
+          <a href="/" className="flex items-center gap-2">
+              <img src="/logo.png" alt="X2" className="w-10 h-10 rounded-lg" />
+            </a>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#funciones" className="text-gray-600 hover:text-slate-700 transition-colors">Funciones</a>
             <a href="#planes" className="text-gray-600 hover:text-slate-700 transition-colors">Planes</a>
@@ -285,28 +350,92 @@ export default function Home() {
             <p className="mt-4 text-gray-400">
               Sin compromiso, sin tarjeta. Te mostramos cómo funciona y respondemos en menos de 24 horas.
             </p>
-            <form className="mt-10 bg-white rounded-2xl p-8 text-gray-900">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Nombre</label>
-                  <input type="text" className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Tu nombre" />
+            <form onSubmit={handleSubmit} className="mt-10 bg-white rounded-2xl p-8 text-gray-900">
+              {success ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold text-gray-900">¡Solicitud enviada!</h3>
+                  <p className="mt-2 text-gray-600">Te contactaremos en menos de 24 horas.</p>
+                  <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-blue-600 hover:text-blue-700">
+                    Enviar otra solicitud
+                  </button>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Teléfono</label>
-                  <input type="tel" className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="+57 300 000 0000" />
-                </div>
-              </div>
-              <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700">Nombre del negocio</label>
-                <input type="text" className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Nombre de tu lavadero" />
-              </div>
-              <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700">Mensaje</label>
-                <textarea rows={4} className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Cuéntanos qué necesitas..."></textarea>
-              </div>
-              <button type="submit" className="mt-8 w-full bg-slate-900 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                Solicitar prueba gratis
-              </button>
+              ) : (
+                <>
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                      {error}
+                    </div>
+                  )}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Nombre</label>
+                      <input
+                        type="text"
+                        value={formData.nombre}
+                        onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                        className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        placeholder="Tu nombre"
+                        disabled={loading}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Teléfono</label>
+                      <input
+                        type="tel"
+                        value={formData.telefono}
+                        onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                        className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                        placeholder="+57 310 4864748"
+                        disabled={loading}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <label className="block text-sm font-medium text-gray-700">Nombre del negocio</label>
+                    <input
+                      type="text"
+                      value={formData.negocio}
+                      onChange={(e) => setFormData({ ...formData, negocio: e.target.value })}
+                      className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                      placeholder="Nombre de tu lavadero"
+                      disabled={loading}
+                    />
+                  </div>
+                  <div className="mt-6">
+                    <label className="block text-sm font-medium text-gray-700">Mensaje</label>
+                    <textarea
+                      rows={4}
+                      value={formData.mensaje}
+                      onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                      className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                      placeholder="Cuéntanos qué necesitas..."
+                      disabled={loading}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="mt-8 w-full bg-slate-900 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Enviando...
+                      </>
+                    ) : (
+                      'Solicitar prueba gratis'
+                    )}
+                  </button>
+                </>
+              )}
             </form>
           </div>
         </section>
@@ -317,7 +446,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2">
-                <Image src="/logo.png" alt="X2" width={40} height={40} className="rounded-lg" />
+                <img src="/logo.png" alt="X2" className="w-10 h-10 rounded-lg" />
                 <span className="text-xl font-bold">X2</span>
               </div>
               <p className="mt-4 text-gray-400">Software para lavaderos que ya usan más de 70 negocios en Colombia.</p>
@@ -334,17 +463,17 @@ export default function Home() {
             <div>
               <h4 className="font-semibold">Contacto</h4>
               <ul className="mt-4 space-y-2 text-gray-400">
-                <li>+57 300 000 0000</li>
-                <li>info@x2app.com</li>
+                <li>+57 310 4864748</li>
+                <li>onixtechsas@gmail.com</li>
                 <li>Colombia</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold">Legal</h4>
               <ul className="mt-4 space-y-2 text-gray-400">
-                <li>Términos</li>
-                <li>Privacidad</li>
-                <li>Soporte</li>
+                <li><a href="/terminos" className="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                <li><a href="/privacidad" className="hover:text-white transition-colors">Política de Privacidad</a></li>
+                <li><a href="https://wa.me/573104864748" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Soporte WhatsApp</a></li>
               </ul>
             </div>
           </div>

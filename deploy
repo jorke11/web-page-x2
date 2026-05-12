@@ -1,0 +1,2 @@
+npm run build &&
+scp -r out/* webapp@161.10.242.64:/home/webapp/projects/web-page/

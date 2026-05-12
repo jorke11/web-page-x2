@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "X2 - Software para Lavaderos",
   description: "Gestiona tu lavadero sin papel ni excel. Controla órdenes, inventario, gastos y liquidaciones en tiempo real.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
