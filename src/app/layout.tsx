@@ -45,9 +45,7 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
-      maximumScale: 1,
       notranslate: true,
-      siteLinksBudget: { minimumSecondsBeforeLinkEmbed: 86400, maximumLinksOnLandingPage: 8 },
     },
   },
   openGraph: {
