@@ -81,7 +81,7 @@ export default function Home() {
             <a href="#contacto" className="text-gray-600 hover:text-slate-700 transition-colors">Contacto</a>
           </nav>
           <a href="#contacto" className="hidden md:block bg-slate-900 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Probar gratis
+            Prueba gratis
           </a>
         </div>
       </header>
@@ -99,7 +99,7 @@ export default function Home() {
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <a href="#contacto" className="bg-slate-900 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700 transition-colors">
-                    Probar gratis
+                    Prueba gratis
                   </a>
                   <a href="#funciones" className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-50 transition-colors">
                     Ver funciones
