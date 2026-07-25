@@ -108,7 +108,7 @@ export default function Home() {
                 <div className="mt-10 flex items-center gap-8">
                   <div>
                     <p className="text-3xl font-bold text-slate-700">70+</p>
-                    <p className="text-gray-600">lavaderos activos</p>
+                    <p className="text-gray-600">Lavaderos activos</p>
                   </div>
                 </div>
               </div>
