@@ -18,6 +18,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             set -e
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm use 20
             cd /home/webapp/projects/web-page
             git pull origin main
             npm ci
