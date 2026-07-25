@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -482,6 +483,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <WhatsAppFloat />
     </div>
   );
 }
