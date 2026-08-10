@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Términos y Condiciones",
@@ -17,18 +18,7 @@ export const metadata: Metadata = {
 export default function Terminos() {
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="X2" className="w-10 h-10 rounded-lg" />
-            </a>
-          </div>
-          <a href="/" className="text-gray-600 hover:text-slate-700 transition-colors">
-            Volver al inicio
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-3xl mx-auto">

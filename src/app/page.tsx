@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
+import Header from '@/components/Header';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -17,16 +18,82 @@ import {
   Shield,
   Headphones,
   RefreshCw,
-  FileText,
-  HandCoins,
-  CircleDollarSign,
-  ShoppingCart,
   SquareParking,
   FileCheck2,
   Zap,
   Smartphone,
   BarChart3,
+  Car,
+  UtensilsCrossed,
+  Scissors,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  Users,
+  Package,
+  Mail,
+  MapPin,
 } from 'lucide-react';
+
+const contactOptions = [
+  { value: 'demo', label: 'Quiero una demo' },
+  { value: 'planes', label: 'Tengo dudas sobre planes' },
+  { value: 'soporte', label: 'Soporte técnico' },
+  { value: 'otro', label: 'Otro' },
+];
+
+const contactInfo = [
+  {
+    icon: MessageCircle,
+    title: 'Escríbenos',
+    lines: ['WhatsApp / Chat', '310 486 4748'],
+  },
+  {
+    icon: Mail,
+    title: 'Email',
+    lines: ['onixtechsas@gmail.com', 'Respondemos en menos de 24 horas.'],
+  },
+  {
+    icon: MapPin,
+    title: 'Ubicación',
+    lines: ['Colombia', 'Atendemos a todo el país.'],
+  },
+];
+
+const heroBenefits = [
+  { icon: Zap, label: 'Más productividad', color: 'text-blue-400 bg-blue-500/10' },
+  { icon: ShieldCheck, label: 'Información segura', color: 'text-green-400 bg-green-500/10' },
+  { icon: BarChart3, label: 'Reportes en tiempo real', color: 'text-purple-400 bg-purple-500/10' },
+  { icon: Users, label: 'Mejora la experiencia de tus clientes', color: 'text-orange-400 bg-orange-500/10' },
+];
+
+// Testimonios placeholder (del diseño de referencia) — reemplazar por reseñas reales cuando estén disponibles.
+const testimonials = [
+  {
+    quote: 'Excelente acompañamiento durante la implementación. La plataforma es intuitiva y se adapta perfectamente a nuestras necesidades.',
+    name: 'Diego Muñoz',
+    role: 'Director Operativo',
+    company: 'DM Logística',
+    initials: 'DM',
+    color: 'bg-slate-900',
+  },
+  {
+    quote: 'X2 nos ha permitido organizar y automatizar nuestros procesos de una manera mucho más sencilla. El soporte siempre está disponible cuando lo necesitamos.',
+    name: 'Ana García',
+    role: 'Gerente Administrativa',
+    company: 'AG Constructores',
+    initials: 'AG',
+    color: 'bg-blue-600',
+  },
+  {
+    quote: 'Desde que implementamos X2, hemos reducido tiempos de trabajo y mejorado la comunicación con nuestros clientes. Totalmente recomendado.',
+    name: 'Valentina Rojas',
+    role: 'Gerente General',
+    company: 'Verde Natural',
+    initials: 'VR',
+    color: 'bg-green-600',
+  },
+];
 
 const appScreens = [
   { src: '/screen2.png', label: 'Órdenes' },
@@ -58,36 +125,55 @@ const whyUs = [
   },
 ];
 
-const coreFeatures = [
+const solutionCards = [
   {
-    icon: FileText,
-    title: 'Gestión de Órdenes',
-    description: 'Registra cada servicio, controla estados, historial por cliente y vehículo.',
-  },
-  {
-    icon: HandCoins,
-    title: 'Liquidación de Trabajadores',
-    description: 'Calcula comisiones por servicio automáticamente. Paga justo a cada uno.',
-  },
-  {
-    icon: CircleDollarSign,
-    title: 'Control de Gastos',
-    description: 'Registra y categoriza todos los gastos. Sabe dónde se va tu plata.',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Inventario y Tienda',
-    description: 'Kardex, compras, ventas, recetas. Ideal si también tienes tienda.',
+    icon: Car,
+    title: 'Lavaderos de autos',
+    description: 'Gestiona turnos, servicios y clientes para optimizar tu lavadero.',
+    features: ['Turnos y reservas', 'Control de servicios', 'Historial de vehículos', 'Reportes de rendimiento'],
+    color: 'bg-blue-100 text-blue-600',
   },
   {
     icon: SquareParking,
-    title: 'Parqueadero',
-    description: 'Control de ingresos, tarifas por hora/día/planes, tickets QR.',
+    title: 'Parqueaderos',
+    description: 'Controla ingresos, salidas y ocupación de tu parqueadero en tiempo real.',
+    features: ['Registro de vehículos', 'Tarifas y cobros', 'Ocupación en tiempo real', 'Reportes y estadísticas'],
+    color: 'bg-slate-100 text-slate-600',
+  },
+  {
+    icon: UtensilsCrossed,
+    title: 'Restaurantes',
+    description: 'Administra tu restaurante de forma eficiente y aumenta tus ventas.',
+    features: ['Órdenes y mesas', 'Menú y productos', 'Inventario e insumos', 'Reportes de ventas'],
+    color: 'bg-amber-100 text-amber-600',
+  },
+  {
+    icon: Scissors,
+    title: 'Peluquerías y Barberías',
+    description: 'Agenda citas, gestiona servicios y fideliza tus clientes.',
+    features: ['Agenda y citas', 'Servicios y profesionales', 'Clientes e historial', 'Promociones y fidelización'],
+    color: 'bg-rose-100 text-rose-600',
+  },
+  {
+    icon: Sparkles,
+    title: 'Detailing',
+    description: 'Controla cada detalle de tus servicios especializados para vehículos.',
+    features: ['Servicios personalizados', 'Checklist de procesos', 'Materiales e insumos', 'Control de calidad'],
+    color: 'bg-purple-100 text-purple-600',
   },
   {
     icon: FileCheck2,
-    title: 'Facturación Electrónica',
-    description: 'Facturas válidas ante la DIAN. Cumple la norma sin complicaciones.',
+    title: 'Facturación electrónica',
+    description: 'Emite, envía y gestiona tus facturas electrónicas de forma fácil y segura.',
+    features: ['Cumplimiento DIAN', 'Documentos ilimitados', 'Envío automático por email', 'Reportes y trazabilidad'],
+    color: 'bg-indigo-100 text-indigo-600',
+  },
+  {
+    icon: Package,
+    title: 'Control de inventario',
+    description: 'Controla tu inventario en tiempo real y optimiza tus recursos.',
+    features: ['Kardex automático', 'Control de productos', 'Alertas de stock', 'Reportes de inventario'],
+    color: 'bg-green-100 text-green-600',
   },
 ];
 
@@ -182,9 +268,12 @@ const accentStyles: Record<string, { icon: string; badge: string; check: string;
 export default function Home() {
   const [formData, setFormData] = useState({
     nombre: '',
+    email: '',
     telefono: '',
     negocio: '',
-    mensaje: ''
+    motivo: '',
+    mensaje: '',
+    aceptaPrivacidad: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -213,7 +302,11 @@ export default function Home() {
     setError('');
     
     if (!formData.nombre.trim()) {
-      setError('Por favor ingresa tu nombre');
+      setError('Por favor ingresa tu nombre completo');
+      return;
+    }
+    if (!formData.email.trim() || !validateEmail(formData.email)) {
+      setError('Por favor ingresa un email válido');
       return;
     }
     if (!formData.telefono.trim()) {
@@ -226,6 +319,14 @@ export default function Home() {
     }
     if (!formData.negocio.trim()) {
       setError('Por favor ingresa el nombre del negocio');
+      return;
+    }
+    if (!formData.motivo) {
+      setError('Por favor selecciona en qué podemos ayudarte');
+      return;
+    }
+    if (!formData.aceptaPrivacidad) {
+      setError('Debes aceptar la política de privacidad para continuar');
       return;
     }
 
@@ -241,7 +342,7 @@ export default function Home() {
 
       if (response.ok) {
         setSuccess(true);
-        setFormData({ nombre: '', telefono: '', negocio: '', mensaje: '' });
+        setFormData({ nombre: '', email: '', telefono: '', negocio: '', motivo: '', mensaje: '', aceptaPrivacidad: false });
       } else {
         setError('Error al enviar la solicitud. Intenta de nuevo.');
       }
@@ -254,56 +355,53 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="X2" className="w-10 h-10 rounded-lg" />
-            </a>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#funciones" className="text-gray-600 hover:text-slate-700 transition-colors">Funciones</a>
-            <a href="#planes" className="text-gray-600 hover:text-slate-700 transition-colors">Planes</a>
-            <a href="#contacto" className="text-gray-600 hover:text-slate-700 transition-colors">Contacto</a>
-          </nav>
-          <a href="#contacto" className="hidden md:block bg-slate-900 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Prueba gratis
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main>
-        <section className="pt-32 pb-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+        <section className="pt-40 pb-24 px-6 bg-slate-900 relative overflow-hidden">
+          <div className="absolute top-20 -right-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 -left-40 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+
+          <div className="max-w-6xl mx-auto relative">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                  Gestiona tu lavadero sin papel ni excel
+                <span className="inline-block bg-blue-500/10 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wide px-3 py-1.5 rounded-full">
+                  SOFTWARE QUE IMPULSA TU EMPRESA
+                </span>
+                <h1 className="mt-5 text-4xl md:text-5xl font-bold text-white leading-tight">
+                  Automatiza, controla<br />
+                  y <span className="text-blue-400">haz crecer tu negocio</span>
                 </h1>
-                <p className="mt-6 text-xl text-gray-600">
-                  Controla ventas, inventario y liquidaciones en tiempo real. Evita errores y pierde menos dinero por cuadernos mal organizados.
+                <p className="mt-6 text-lg text-gray-300 max-w-xl">
+                  X2 es la plataforma todo-en-uno para lavaderos, parqueaderos, restaurantes, peluquerías y más negocios de servicio. Controla ventas, inventario y clientes, y factura electrónicamente desde un solo lugar.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <a href="#contacto" className="bg-slate-900 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700 transition-colors">
-                    Prueba gratis
+                  <a href="#contacto" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-500 transition-colors inline-flex items-center justify-center gap-2">
+                    Solicitar demo <ArrowRight className="w-4 h-4" />
                   </a>
-                  <a href="#funciones" className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-50 transition-colors">
-                    Ver funciones
+                  <a href="#funciones" className="border border-white/20 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/5 transition-colors">
+                    Conocer soluciones
                   </a>
                 </div>
-                <div className="mt-10 flex items-center gap-8">
-                  <div>
-                    <p className="text-3xl font-bold text-slate-700">+300</p>
-                    <p className="text-gray-600">Lavaderos activos</p>
-                  </div>
+                <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {heroBenefits.map(({ icon: Icon, label, color }) => (
+                    <div key={label} className="flex flex-col gap-2">
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${color}`}>
+                        <Icon className="w-4.5 h-4.5" strokeWidth={2} />
+                      </div>
+                      <p className="text-sm text-gray-300 leading-snug">{label}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="relative">
-                <div className="relative aspect-square flex flex-col items-center justify-center p-8 overflow-visible">
-                  <div className="absolute w-72 h-72 bg-blue-200/40 rounded-full blur-3xl" />
-                  <div className="absolute w-56 h-56 -translate-x-24 translate-y-16 bg-purple-200/30 rounded-full blur-3xl" />
 
-                  <div className="relative w-full max-w-[240px] rounded-[2.25rem] bg-slate-900 p-2.5 shadow-2xl shadow-blue-900/30 -rotate-3 transition-transform duration-500 hover:rotate-0">
-                    <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-900 rounded-full z-10" />
-                    <div className="relative overflow-hidden rounded-[1.6rem] bg-black aspect-[750/1504]">
+              <div className="relative">
+                <img src="/mac_x2.png" alt="X2 - Panel de reportes en tiempo real" className="w-full drop-shadow-2xl" />
+
+                <div className="absolute -bottom-8 -right-4 sm:-right-10 w-[30%] min-w-[110px] max-w-[170px]">
+                  <div className="relative rounded-[1.4rem] bg-slate-900 p-1.5 shadow-2xl ring-1 ring-white/10">
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-2 bg-slate-900 rounded-full z-10" />
+                    <div className="relative overflow-hidden rounded-[1rem] bg-black aspect-[750/1504]">
                       <div
                         className="flex h-full transition-transform duration-500 ease-out"
                         style={{
@@ -322,60 +420,91 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-
-                    {activeScreen === 1 && (
-                      <div className="hidden sm:flex absolute -right-10 top-10 items-center gap-2 bg-white rounded-xl shadow-lg px-3 py-2 rotate-3 animate-in fade-in slide-in-from-right-4 duration-500">
-                        <span className="relative flex h-2.5 w-2.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                        </span>
-                        <span className="text-xs font-medium text-gray-700 whitespace-nowrap">Nueva orden registrada</span>
-                      </div>
-                    )}
-
-                    <div className="hidden sm:block absolute -left-12 -bottom-6 bg-white rounded-2xl shadow-xl px-5 py-3 -rotate-3">
-                      <p className="text-2xl font-bold text-slate-900 leading-none">+300</p>
-                      <p className="mt-1 text-xs text-gray-500 whitespace-nowrap">Lavaderos activos</p>
-                    </div>
                   </div>
-
-                  <div className="mt-10 flex items-center gap-2">
+                  <div className="mt-3 flex items-center justify-center gap-1.5">
                     {appScreens.map((screen, i) => (
                       <button
                         key={screen.label}
                         type="button"
                         onClick={() => setActiveScreen(i)}
                         aria-label={screen.label}
-                        className={`h-2 rounded-full transition-all ${
-                          i === activeScreen ? 'w-6 bg-slate-700' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                        className={`h-1.5 rounded-full transition-all ${
+                          i === activeScreen ? 'w-4 bg-white' : 'w-1.5 bg-white/30 hover:bg-white/50'
                         }`}
                       />
                     ))}
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">{appScreens[activeScreen].label}</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <section className="py-16 px-6 bg-white border-b border-gray-100">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_2fr] gap-10 items-center">
+            <div>
+              <p className="text-xs font-semibold text-blue-600 tracking-wide">LA EXPERIENCIA DE NUESTROS CLIENTES</p>
+              <h2 className="mt-2 text-2xl md:text-3xl font-bold text-gray-900">
+                Clientes que confían en X2
+              </h2>
+              <p className="mt-3 text-gray-600">
+                Más de 300 negocios ya optimizan sus operaciones con X2.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {testimonials.map((t) => (
+                <div key={t.name} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                  <div className="flex gap-0.5 text-amber-400">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" strokeWidth={0} />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm text-gray-600 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+                  <div className="mt-5 flex items-center gap-3">
+                    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-semibold shrink-0 ${t.color}`}>
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+                      <p className="text-xs text-gray-500">{t.role} · {t.company}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="funciones" className="py-20 px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Todo lo que necesitas en una sola app</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-900">
+              Nuestras <span className="underline decoration-blue-500 decoration-2 underline-offset-4">soluciones</span>
+            </h2>
             <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
-              Gestiona órdenes, gastos, clientes, inventario y más. Sin suscripciones adicionales.
+              Módulos diseñados para cubrir cada área de tu negocio y trabajar de forma integrada.
             </p>
-            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {coreFeatures.map(({ icon: Icon, title, description }) => (
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {solutionCards.map(({ icon: Icon, title, description, features, color }) => (
                 <Card
                   key={title}
-                  className="group p-8 gap-0 border-gray-100 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:border-blue-100"
+                  className="p-6 gap-0 border-gray-100 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:border-blue-100"
                 >
-                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center transition-colors group-hover:bg-blue-600">
-                    <Icon className="w-7 h-7 text-blue-600 transition-colors group-hover:text-white" strokeWidth={1.75} />
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${color}`}>
+                    <Icon className="w-7 h-7" strokeWidth={1.75} />
                   </div>
-                  <h3 className="mt-6 text-xl font-semibold text-gray-900">{title}</h3>
-                  <p className="mt-3 text-gray-600 leading-relaxed">{description}</p>
+                  <h3 className="mt-5 text-base font-semibold text-gray-900">{title}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">{description}</p>
+                  <ul className="mt-4 space-y-2">
+                    {features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-sm text-gray-600">
+                        <Check className="w-4 h-4 text-blue-500 shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="#contacto" className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                    Conocer más <ArrowRight className="w-4 h-4" />
+                  </a>
                 </Card>
               ))}
             </div>
@@ -561,13 +690,45 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contacto" className="py-20 px-6 bg-gray-900 text-white">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold">Pruébalo gratis por 15 días</h2>
-            <p className="mt-4 text-gray-400">
-              Sin compromiso, sin tarjeta. Te mostramos cómo funciona y respondemos en menos de 24 horas.
-            </p>
-            <form onSubmit={handleSubmit} className="mt-10 bg-white rounded-2xl p-8 text-gray-900">
+        <section id="contacto" className="relative py-20 px-6 bg-white overflow-hidden">
+          <div
+            className="absolute bottom-0 right-0 w-56 h-56 opacity-60 pointer-events-none"
+            style={{
+              backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)',
+              backgroundSize: '14px 14px',
+            }}
+          />
+
+          <div className="max-w-6xl mx-auto relative grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <span className="inline-block bg-blue-50 text-blue-600 text-xs font-semibold tracking-wide px-3 py-1.5 rounded-full">
+                CONTACTO
+              </span>
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                Hablemos de tu negocio, <span className="text-blue-600">estamos para ayudarte</span>
+              </h2>
+              <div className="mt-4 w-14 h-1 bg-blue-600 rounded-full" />
+              <p className="mt-6 text-gray-600 leading-relaxed max-w-lg">
+                ¿Tienes dudas, quieres más información o necesitas una demo personalizada? Completa el
+                formulario y nuestro equipo se pondrá en contacto contigo lo antes posible.
+              </p>
+
+              <div className="mt-10 grid sm:grid-cols-3 gap-4">
+                {contactInfo.map(({ icon: Icon, title, lines }) => (
+                  <div key={title} className="bg-gray-50 rounded-2xl border border-gray-100 p-5 text-center">
+                    <div className="w-11 h-11 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
+                      <Icon className="w-5 h-5 text-blue-600" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="mt-3 text-sm font-semibold text-gray-900">{title}</h3>
+                    {lines.map((line) => (
+                      <p key={line} className="mt-1 text-xs text-gray-500 leading-relaxed">{line}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 relative">
               {success ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
@@ -575,22 +736,26 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="mt-4 text-xl font-semibold text-gray-900">¡Solicitud enviada!</h3>
+                  <h3 className="mt-4 text-xl font-semibold text-gray-900">¡Mensaje enviado!</h3>
                   <p className="mt-2 text-gray-600">Te contactaremos en menos de 24 horas.</p>
                   <button type="button" onClick={() => setSuccess(false)} className="mt-6 text-blue-600 hover:text-blue-700">
-                    Enviar otra solicitud
+                    Enviar otro mensaje
                   </button>
                 </div>
               ) : (
-                <>
+                <form onSubmit={handleSubmit}>
+                  <h3 className="text-lg font-semibold text-gray-900">Envíanos un mensaje</h3>
+                  <p className="mt-1 text-sm text-gray-500">Cuéntanos cómo podemos ayudarte.</p>
+
                   {error && (
-                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+                    <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
                       {error}
                     </div>
                   )}
-                  <div className="grid md:grid-cols-2 gap-6">
+
+                  <div className="mt-6 grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">Nombre</label>
+                      <label className="block text-sm font-medium text-gray-700">Nombre completo *</label>
                       <input
                         type="text"
                         value={formData.nombre}
@@ -601,43 +766,86 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700">Teléfono</label>
+                      <label className="block text-sm font-medium text-gray-700">Email *</label>
                       <input
-                        type="tel"
-                        value={formData.telefono}
-                        onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                        placeholder="+57 310 4864748"
+                        placeholder="tu@email.com"
                         disabled={loading}
                       />
                     </div>
                   </div>
-                  <div className="mt-6">
-                    <label className="block text-sm font-medium text-gray-700">Nombre del negocio</label>
+
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">Teléfono / WhatsApp *</label>
+                    <input
+                      type="tel"
+                      value={formData.telefono}
+                      onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                      className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                      placeholder="+57 310 4864748"
+                      disabled={loading}
+                    />
+                  </div>
+
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">Nombre del negocio *</label>
                     <input
                       type="text"
                       value={formData.negocio}
                       onChange={(e) => setFormData({ ...formData, negocio: e.target.value })}
                       className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                      placeholder="Nombre de tu lavadero"
+                      placeholder="Nombre de tu negocio"
                       disabled={loading}
                     />
                   </div>
-                  <div className="mt-6">
-                    <label className="block text-sm font-medium text-gray-700">Mensaje</label>
+
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">¿En qué podemos ayudarte? *</label>
+                    <select
+                      value={formData.motivo}
+                      onChange={(e) => setFormData({ ...formData, motivo: e.target.value })}
+                      className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent text-gray-700 bg-white"
+                      disabled={loading}
+                    >
+                      <option value="">Selecciona una opción</option>
+                      {contactOptions.map((option) => (
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">Escribe tu mensaje *</label>
                     <textarea
                       rows={4}
                       value={formData.mensaje}
                       onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
                       className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                      placeholder="Cuéntanos qué necesitas..."
+                      placeholder="Cuéntanos tu necesidad o dudas"
                       disabled={loading}
                     />
                   </div>
+
+                  <label className="mt-5 flex items-start gap-2 text-sm text-gray-600 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.aceptaPrivacidad}
+                      onChange={(e) => setFormData({ ...formData, aceptaPrivacidad: e.target.checked })}
+                      className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                      disabled={loading}
+                    />
+                    <span>
+                      Acepto la <a href="/privacidad" className="text-blue-600 hover:underline">política de privacidad</a> y tratamiento de datos.
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
                     disabled={loading}
-                    className="mt-8 w-full bg-slate-900 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="mt-6 w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {loading ? (
                       <>
@@ -648,12 +856,14 @@ export default function Home() {
                         Enviando...
                       </>
                     ) : (
-                      'Solicitar prueba gratis'
+                      <>
+                        Enviar mensaje <ArrowRight className="w-4 h-4" />
+                      </>
                     )}
                   </button>
-                </>
+                </form>
               )}
-            </form>
+            </div>
           </div>
         </section>
       </main>
