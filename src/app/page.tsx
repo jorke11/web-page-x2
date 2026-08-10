@@ -291,7 +291,7 @@ export default function Home() {
                 </div>
                 <div className="mt-10 flex items-center gap-8">
                   <div>
-                    <p className="text-3xl font-bold text-slate-700">70+</p>
+                    <p className="text-3xl font-bold text-slate-700">+300</p>
                     <p className="text-gray-600">Lavaderos activos</p>
                   </div>
                 </div>
@@ -636,7 +636,7 @@ export default function Home() {
                 <img src="/logo.png" alt="X2" className="w-10 h-10 rounded-lg" />
                 <span className="text-xl font-bold">X2</span>
               </div>
-              <p className="mt-4 text-gray-400">Software para lavaderos que ya usan más de 70 negocios en Colombia.</p>
+              <p className="mt-4 text-gray-400">Software para lavaderos que ya usan más de 300 negocios en Colombia.</p>
             </div>
             <div>
               <h4 className="font-semibold">Funciones</h4>
@@ -650,8 +650,8 @@ export default function Home() {
             <div>
               <h4 className="font-semibold">Contacto</h4>
               <ul className="mt-4 space-y-2 text-gray-400">
-                <li>+57 310 4864748</li>
-                <li>onixtechsas@gmail.com</li>
+                <li><a href="tel:+573104864748" className="hover:text-white transition-colors">+57 310 4864748</a></li>
+                <li><a href="mailto:onixtechsas@gmail.com" className="hover:text-white transition-colors">onixtechsas@gmail.com</a></li>
                 <li>Colombia</li>
               </ul>
             </div>

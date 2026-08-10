@@ -3,5 +3,38 @@ Allow: /
 
 Sitemap: https://x2control.com/sitemap.xml
 
+# Google AI Overviews / Gemini
 User-agent: Google-Extended
-Disallow:
+Allow: /
+
+# OpenAI (ChatGPT search & browsing, GPTBot training)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used to train many LLMs)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /

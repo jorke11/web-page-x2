@@ -106,7 +106,28 @@ export default function SchemaMarkup() {
       "Reportes en tiempo real",
       "Acceso desde cualquier dispositivo",
     ],
-    screenshot: `${BASE_URL}/og-image.png`,
+    screenshot: [
+      {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/screen2.png`,
+        caption: "Gestión de órdenes de servicio en X2",
+      },
+      {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/screen3.png`,
+        caption: "Detalle de orden con métodos de pago en X2",
+      },
+      {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/screen4.png`,
+        caption: "Asistente X2 con inteligencia artificial",
+      },
+      {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/screen1.png`,
+        caption: "Menú de módulos de X2: tienda, parqueadero, clientes y más",
+      },
+    ],
     url: BASE_URL,
     author: {
       "@type": "Organization",
