@@ -297,19 +297,49 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-100 to-slate-50 flex flex-col items-center justify-center p-8">
-                  <div className="relative w-full max-w-[240px] rounded-[2.25rem] bg-slate-900 p-2.5 shadow-2xl">
+                <div className="relative aspect-square flex flex-col items-center justify-center p-8 overflow-visible">
+                  <div className="absolute w-72 h-72 bg-blue-200/40 rounded-full blur-3xl" />
+                  <div className="absolute w-56 h-56 -translate-x-24 translate-y-16 bg-purple-200/30 rounded-full blur-3xl" />
+
+                  <div className="relative w-full max-w-[240px] rounded-[2.25rem] bg-slate-900 p-2.5 shadow-2xl shadow-blue-900/30 -rotate-3 transition-transform duration-500 hover:rotate-0">
                     <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-900 rounded-full z-10" />
                     <div className="relative overflow-hidden rounded-[1.6rem] bg-black aspect-[750/1504]">
-                      <img
-                        key={activeScreen}
-                        src={appScreens[activeScreen].src}
-                        alt={`X2 App - ${appScreens[activeScreen].label}`}
-                        className="w-full h-full object-cover animate-in fade-in duration-300"
-                      />
+                      <div
+                        className="flex h-full transition-transform duration-500 ease-out"
+                        style={{
+                          width: `${appScreens.length * 100}%`,
+                          transform: `translateX(-${activeScreen * (100 / appScreens.length)}%)`,
+                        }}
+                      >
+                        {appScreens.map((screen) => (
+                          <div key={screen.src} className="h-full shrink-0" style={{ width: `${100 / appScreens.length}%` }}>
+                            <img
+                              src={screen.src}
+                              alt={`X2 App - ${screen.label}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {activeScreen === 1 && (
+                      <div className="hidden sm:flex absolute -right-10 top-10 items-center gap-2 bg-white rounded-xl shadow-lg px-3 py-2 rotate-3 animate-in fade-in slide-in-from-right-4 duration-500">
+                        <span className="relative flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+                        </span>
+                        <span className="text-xs font-medium text-gray-700 whitespace-nowrap">Nueva orden registrada</span>
+                      </div>
+                    )}
+
+                    <div className="hidden sm:block absolute -left-12 -bottom-6 bg-white rounded-2xl shadow-xl px-5 py-3 -rotate-3">
+                      <p className="text-2xl font-bold text-slate-900 leading-none">+300</p>
+                      <p className="mt-1 text-xs text-gray-500 whitespace-nowrap">Lavaderos activos</p>
                     </div>
                   </div>
-                  <div className="mt-6 flex items-center gap-2">
+
+                  <div className="mt-10 flex items-center gap-2">
                     {appScreens.map((screen, i) => (
                       <button
                         key={screen.label}
