@@ -46,21 +46,47 @@ export default function SchemaMarkup() {
     alternateName: "X2 Software para Lavaderos",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
-    offers: {
-      "@type": "Offer",
-      price: "121000",
-      priceCurrency: "COP",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        unitCode: "MON",
-        billingDuration: "P1M",
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Plan Base",
+        price: "121000",
+        priceCurrency: "COP",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          unitCode: "MON",
+          billingDuration: "P1M",
+        },
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: "OnixTech SAS" },
       },
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: "OnixTech SAS",
+      {
+        "@type": "Offer",
+        name: "Plan Pro",
+        price: "171000",
+        priceCurrency: "COP",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          unitCode: "MON",
+          billingDuration: "P1M",
+        },
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: "OnixTech SAS" },
       },
-    },
+      {
+        "@type": "Offer",
+        name: "Plan Full",
+        price: "221000",
+        priceCurrency: "COP",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          unitCode: "MON",
+          billingDuration: "P1M",
+        },
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: "OnixTech SAS" },
+      },
+    ],
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -68,14 +94,15 @@ export default function SchemaMarkup() {
       bestRating: "5",
     },
     description:
-      "Software de gestión integral para lavaderos de vehículos. Controla órdenes, inventario, gastos, liquidaciones de trabajadores y facturación electrónica DIAN.",
+      "Software de gestión integral para lavaderos de vehículos. Controla ventas, inventario, kardex, costos, parqueadero y reconocimiento de placas por IA.",
     features: [
-      "Gestión de órdenes de servicio",
-      "Control de inventario y tienda",
-      "Liquidación automática de trabajadores",
+      "Reportes de ventas y caja diaria",
+      "Control de inventario y kardex automático",
+      "Control de costos",
       "Control de parqueadero",
-      "Facturación electrónica DIAN",
-      "Notificaciones WhatsApp",
+      "Cámara IA - reconocimiento de placas",
+      "Voz IA",
+      "Notificaciones automáticas por WhatsApp",
       "Reportes en tiempo real",
       "Acceso desde cualquier dispositivo",
     ],
@@ -126,7 +153,7 @@ export default function SchemaMarkup() {
         name: "¿Cuánto cuesta el software para lavaderos X2?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "X2 tiene planes desde $121.000 COP/mes. El plan Básico incluye gestión de órdenes, control de gastos y liquidación automática. El plan Pro ($165.000/mes) agrega inventario, parqueadero y facturación electrónica DIAN.",
+          text: "X2 tiene planes desde $121.000 COP/mes. El Plan Base incluye reportes de ventas, caja diaria y módulo administrativo. El Plan Pro ($171.000/mes) agrega inventario, kardex, control de costos y cámara IA. El Plan Full ($221.000/mes) incluye parqueadero, voz IA y soporte prioritario, todo activo sin restricciones.",
         },
       },
       {

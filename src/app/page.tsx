@@ -1,7 +1,183 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  Check,
+  ClipboardList,
+  TrendingUp,
+  Crown,
+  Camera,
+  Mic,
+  MessageCircle,
+  Star,
+  Cloud,
+  Shield,
+  Headphones,
+  RefreshCw,
+  FileText,
+  HandCoins,
+  CircleDollarSign,
+  ShoppingCart,
+  SquareParking,
+  FileCheck2,
+  Zap,
+  Smartphone,
+  BarChart3,
+} from 'lucide-react';
+
+const appScreens = [
+  { src: '/screen2.png', label: 'Órdenes' },
+  { src: '/screen3.png', label: 'Detalle de orden' },
+  { src: '/screen4.png', label: 'Asistente X2 (IA)' },
+  { src: '/screen1.png', label: 'Menú completo' },
+];
+
+const whyUs = [
+  {
+    icon: Zap,
+    title: 'Fácil de Usar',
+    description: 'Tu equipo lo aprende en menos de 1 hora.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Desde tu Celular',
+    description: 'Accede desde cualquier dispositivo.',
+  },
+  {
+    icon: MessageCircle,
+    title: 'Notificaciones WhatsApp',
+    description: 'Avisa a clientes sin pagar más.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Reportes en Tiempo Real',
+    description: 'Sabe cómo va tu negocio siempre.',
+  },
+];
+
+const coreFeatures = [
+  {
+    icon: FileText,
+    title: 'Gestión de Órdenes',
+    description: 'Registra cada servicio, controla estados, historial por cliente y vehículo.',
+  },
+  {
+    icon: HandCoins,
+    title: 'Liquidación de Trabajadores',
+    description: 'Calcula comisiones por servicio automáticamente. Paga justo a cada uno.',
+  },
+  {
+    icon: CircleDollarSign,
+    title: 'Control de Gastos',
+    description: 'Registra y categoriza todos los gastos. Sabe dónde se va tu plata.',
+  },
+  {
+    icon: ShoppingCart,
+    title: 'Inventario y Tienda',
+    description: 'Kardex, compras, ventas, recetas. Ideal si también tienes tienda.',
+  },
+  {
+    icon: SquareParking,
+    title: 'Parqueadero',
+    description: 'Control de ingresos, tarifas por hora/día/planes, tickets QR.',
+  },
+  {
+    icon: FileCheck2,
+    title: 'Facturación Electrónica',
+    description: 'Facturas válidas ante la DIAN. Cumple la norma sin complicaciones.',
+  },
+];
+
+const plans = [
+  {
+    name: 'Plan Base',
+    price: '$121.000',
+    tagline: 'Ideal para empezar a controlar tu lavadero.',
+    icon: ClipboardList,
+    accent: 'green',
+    features: [
+      'Reportes de ventas',
+      'Caja diaria',
+      'Registro de egresos',
+      'Anticipos y pagos a trabajadores',
+      'Cartera de servicios',
+      'Módulo administrativo',
+      'Notificaciones automáticas por WhatsApp*',
+      'Impresión de tickets (POS 58mm / 80mm)',
+      'Soporte estándar',
+    ],
+    whatsapp: [6],
+    button: 'bg-green-600 hover:bg-green-700',
+  },
+  {
+    name: 'Plan Pro',
+    price: '$171.000',
+    tagline: 'Para lavaderos que quieren mayor control y automatización.',
+    icon: TrendingUp,
+    accent: 'blue',
+    popular: true,
+    features: [
+      'Todo lo incluido en Plan Base',
+      'Módulo de tienda',
+      'Control de inventario',
+      'Kardex automático',
+      'Control de costos',
+      'Cámara IA – reconocimiento de placas',
+      'Notificaciones automáticas por WhatsApp*',
+    ],
+    camera: [5],
+    whatsapp: [6],
+    button: 'bg-blue-600 hover:bg-blue-700',
+  },
+  {
+    name: 'Plan Full',
+    price: '$221.000',
+    tagline: 'Todo el potencial de X2 para llevar tu lavadero al siguiente nivel.',
+    icon: Crown,
+    accent: 'purple',
+    features: [
+      'Ventas',
+      'Inventario + Kardex + Costos',
+      'Parking',
+      'Voz IA',
+      'Cámara IA – reconocimiento de placas',
+      'Notificaciones automáticas por WhatsApp*',
+      'Soporte prioritario',
+      'Todo activo, sin restricciones',
+    ],
+    voice: [3],
+    camera: [4],
+    whatsapp: [5],
+    button: 'bg-purple-600 hover:bg-purple-700',
+  },
+];
+
+const accentStyles: Record<string, { icon: string; badge: string; check: string; border: string; title: string }> = {
+  green: {
+    icon: 'bg-green-100 text-green-600',
+    badge: 'bg-green-100 text-green-700',
+    check: 'text-green-600',
+    border: 'border-gray-100',
+    title: 'text-green-700',
+  },
+  blue: {
+    icon: 'bg-blue-100 text-blue-600',
+    badge: 'bg-blue-500 text-white',
+    check: 'text-blue-600',
+    border: 'border-2 border-blue-500',
+    title: 'text-blue-700',
+  },
+  purple: {
+    icon: 'bg-purple-100 text-purple-600',
+    badge: 'bg-purple-100 text-purple-700',
+    check: 'text-purple-600',
+    border: 'border-gray-100',
+    title: 'text-purple-700',
+  },
+};
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -13,6 +189,14 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [activeScreen, setActiveScreen] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveScreen((prev) => (prev + 1) % appScreens.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -113,28 +297,32 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-100 to-slate-50 flex items-center justify-center p-8">
-                  <div className="w-full bg-white rounded-xl shadow-lg p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm font-medium text-gray-500">Órdenes Hoy</span>
-                      <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">+15%</span>
-                    </div>
-                    <p className="text-3xl font-bold text-gray-900">$2.450.000</p>
-                    <div className="mt-4 space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Lavado Express</span>
-                        <span className="font-medium">12 servicios</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Detailing</span>
-                        <span className="font-medium">3 servicios</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Parqueadero</span>
-                        <span className="font-medium">8 vehículos</span>
-                      </div>
+                <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-100 to-slate-50 flex flex-col items-center justify-center p-8">
+                  <div className="relative w-full max-w-[240px] rounded-[2.25rem] bg-slate-900 p-2.5 shadow-2xl">
+                    <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-900 rounded-full z-10" />
+                    <div className="relative overflow-hidden rounded-[1.6rem] bg-black aspect-[750/1504]">
+                      <img
+                        key={activeScreen}
+                        src={appScreens[activeScreen].src}
+                        alt={`X2 App - ${appScreens[activeScreen].label}`}
+                        className="w-full h-full object-cover animate-in fade-in duration-300"
+                      />
                     </div>
                   </div>
+                  <div className="mt-6 flex items-center gap-2">
+                    {appScreens.map((screen, i) => (
+                      <button
+                        key={screen.label}
+                        type="button"
+                        onClick={() => setActiveScreen(i)}
+                        aria-label={screen.label}
+                        className={`h-2 rounded-full transition-all ${
+                          i === activeScreen ? 'w-6 bg-slate-700' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="mt-2 text-sm text-gray-500">{appScreens[activeScreen].label}</p>
                 </div>
               </div>
             </div>
@@ -147,61 +335,19 @@ export default function Home() {
             <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
               Gestiona órdenes, gastos, clientes, inventario y más. Sin suscripciones adicionales.
             </p>
-            <div className="mt-12 grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Gestión de Órdenes</h3>
-                <p className="mt-3 text-gray-600">Registra cada servicio, controla estados, historial por cliente y vehículo.</p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Liquidación de Trabajadores</h3>
-                <p className="mt-3 text-gray-600">Calcula comisiones por servicio automáticamente. Paga justo a cada uno.</p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Control de Gastos</h3>
-                <p className="mt-3 text-gray-600">Registra y categoriza todos los gastos. Saba dónde se va tu plata.</p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Inventario y Tienda</h3>
-                <p className="mt-3 text-gray-600">Kardex, compras, ventas, recetas. Ideal si también tienes tienda.</p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Parqueadero</h3>
-                <p className="mt-3 text-gray-600">Control de ingresos, tarifas por hora/día/planes, tickets QR.</p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-7 h-7 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-gray-900">Facturación Electrónica</h3>
-                <p className="mt-3 text-gray-600">Facturas válidas ante la DIAN. Cumple la norma sin complicaciones.</p>
-              </div>
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {coreFeatures.map(({ icon: Icon, title, description }) => (
+                <Card
+                  key={title}
+                  className="group p-8 gap-0 border-gray-100 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:border-blue-100"
+                >
+                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center transition-colors group-hover:bg-blue-600">
+                    <Icon className="w-7 h-7 text-blue-600 transition-colors group-hover:text-white" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-6 text-xl font-semibold text-gray-900">{title}</h3>
+                  <p className="mt-3 text-gray-600 leading-relaxed">{description}</p>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -209,139 +355,179 @@ export default function Home() {
         <section className="py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900">¿Por qué lavaderos nos eligen?</h2>
-            <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+            <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
+              Diseñado para el día a día de tu lavadero, sin curva de aprendizaje ni costos ocultos.
+            </p>
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {whyUs.map(({ icon: Icon, title, description }) => (
+                <div
+                  key={title}
+                  className="group text-center rounded-2xl p-6 transition-colors hover:bg-green-50/60"
+                >
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto transition-colors group-hover:bg-green-600">
+                    <Icon className="w-8 h-8 text-green-600 transition-colors group-hover:text-white" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-4 font-semibold text-gray-900">{title}</h3>
+                  <p className="mt-2 text-gray-600">{description}</p>
                 </div>
-                <h3 className="mt-4 font-semibold text-gray-900">Fácil de Usar</h3>
-                <p className="mt-2 text-gray-600">Tu equipo lo aprende en menos de 1 hora</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="mt-4 font-semibold text-gray-900">Desde tu Celular</h3>
-                <p className="mt-2 text-gray-600">Accede desde cualquier dispositivo</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                  </svg>
-                </div>
-                <h3 className="mt-4 font-semibold text-gray-900">Notificaciones WhatsApp</h3>
-                <p className="mt-2 text-gray-600">Avisa a clientes sin pagar más</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="mt-4 font-semibold text-gray-900">Reportes en Tiempo Real</h3>
-                <p className="mt-2 text-gray-600">Sabe cómo va tu negocio siempre</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section id="planes" className="py-20 px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Planes claros, sin letra pequeña</h2>
+            <p className="text-center text-sm font-semibold text-blue-600">Planes X2</p>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-center text-gray-900">Planes claros, sin letra pequeña</h2>
             <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
               Elige lo que necesitas. Sin permanencias, cancela cuando quieras.
             </p>
-            <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-900">Básico</h3>
-                <p className="mt-4 text-4xl font-bold text-gray-900">$121.000<span className="text-lg font-normal text-gray-600">/mes</span></p>
-                <p className="mt-2 text-gray-600">Ideal para lavaderos</p>
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Gestión de órdenes
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Control de gastos
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Liquidación automática
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Notificaciones WhatsApp
-                  </li>
-                </ul>
-                <a href="#contacto" className="mt-8 block w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700 transition-colors">
-                  Elegir plan
-                </a>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-500 relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Más popular
+
+            <div className="mt-12 grid md:grid-cols-3 gap-8 items-start">
+              {plans.map((plan) => {
+                const styles = accentStyles[plan.accent];
+                const Icon = plan.icon;
+                return (
+                  <Card
+                    key={plan.name}
+                    className={`relative gap-0 overflow-visible ${
+                      plan.popular
+                        ? `${styles.border} shadow-lg p-8 pt-12 md:pb-12`
+                        : `${styles.border} shadow-sm p-8`
+                    }`}
+                  >
+                    {plan.popular && (
+                      <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 h-auto px-3 py-1 text-xs whitespace-nowrap ${styles.badge}`}>
+                        MÁS POPULAR
+                      </Badge>
+                    )}
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${styles.icon}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className={`mt-4 text-sm font-bold tracking-wide ${styles.title}`}>{plan.name.toUpperCase()}</h3>
+                    <p className="mt-2 text-4xl font-bold text-gray-900">
+                      {plan.price}
+                      <span className="text-lg font-normal text-gray-600">/mes</span>
+                    </p>
+                    <p className={`mt-3 text-sm ${styles.title}`}>{plan.tagline}</p>
+
+                    <ul className="mt-6 space-y-3 border-t border-gray-100 pt-6">
+                      {plan.features.map((feature, i) => (
+                        <li key={feature} className="flex items-start gap-3 text-sm text-gray-600">
+                          <Check className={`w-5 h-5 shrink-0 ${styles.check}`} />
+                          <span>
+                            {feature}
+                            {plan.camera?.includes(i) && (
+                              <Camera className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-gray-400" />
+                            )}
+                            {plan.voice?.includes(i) && (
+                              <Mic className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-gray-400" />
+                            )}
+                            {plan.whatsapp?.includes(i) && (
+                              <MessageCircle className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-green-500" />
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href="#contacto"
+                      className={`mt-8 block w-full text-white px-6 py-3 rounded-lg font-medium text-center transition-colors ${plan.button}`}
+                    >
+                      Elegir plan
+                    </a>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 flex items-start gap-3 bg-white rounded-xl border border-gray-100 p-6 text-sm text-gray-600">
+              <MessageCircle className="w-5 h-5 shrink-0 text-green-500 mt-0.5" />
+              <p>
+                <span className="font-semibold text-gray-900">* WhatsApp Business</span> Las notificaciones automáticas por WhatsApp hacen parte de la funcionalidad de X2.
+                <br />
+                El costo de los mensajes es cobrado por Meta y se paga por separado del plan X2.
+                <br />
+                X2 realiza la integración con la API oficial de WhatsApp Business de Meta.
+              </p>
+            </div>
+
+            <div className="mt-6 grid md:grid-cols-2 gap-6">
+              <Card className="gap-0 border-amber-200 bg-amber-50 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                    <Camera className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-semibold text-gray-900">Cámara IA – PLUS para Plan Base</h4>
+                      <Badge className="bg-amber-200 text-amber-800 h-auto px-2 py-0.5 text-[10px]">PLUS</Badge>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600">
+                      Agrega reconocimiento automático de placas a tu Plan Base. Mejora el control de entradas y la experiencia de tus clientes.
+                    </p>
+                    <div className="mt-4 flex items-center gap-4">
+                      <span className="text-xl font-bold text-amber-700">+ $25.000<span className="text-sm font-normal">/mes</span></span>
+                      <a href="#contacto" className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        Agregar Cámara IA
+                      </a>
+                    </div>
+                    <p className="mt-3 text-xs text-gray-500">
+                      Disponible como complemento del Plan Base. La instalación y el hardware de la cámara pueden tener costo adicional según la configuración.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900">Pro</h3>
-                <p className="mt-4 text-4xl font-bold text-gray-900">$165.000<span className="text-lg font-normal text-gray-600">/mes</span></p>
-                <p className="mt-2 text-gray-600">Todo incluido</p>
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Todo del Básico
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Tienda + Inventario
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Parqueadero
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Facturación electrónica
-                  </li>
-                </ul>
-                <a href="#contacto" className="mt-8 block w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700 transition-colors">
-                  Elegir plan
-                </a>
+              </Card>
+
+              <Card className="gap-0 border-blue-100 bg-blue-50/50 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                    <Star className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">¿Quieres más control?</h4>
+                    <p className="mt-2 text-sm text-gray-600">
+                      Por solo $25.000 más que el complemento de Cámara IA, obtienes el Plan Pro completo con inventario, kardex y control de costos.
+                    </p>
+                    <a href="#contacto" className="mt-4 inline-block border border-blue-300 bg-white hover:bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                      Conocer Plan Pro
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="flex items-start gap-3">
+                <Cloud className="w-6 h-6 text-gray-400 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-sm">Plataforma 100% en la nube</h4>
+                  <p className="mt-1 text-sm text-gray-600">Accede desde cualquier lugar y dispositivo.</p>
+                </div>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-900">Empresas</h3>
-                <p className="mt-4 text-4xl font-bold text-gray-900">$210.000<span className="text-lg font-normal text-gray-600">/mes</span></p>
-                <p className="mt-2 text-gray-600">Para cadenas</p>
-                <ul className="mt-6 space-y-3">
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Multi-sede
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Reportes consolidados
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Todo de Pro
-                  </li>
-                  <li className="flex items-center gap-3 text-gray-600">
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    Soporte prioritario
-                  </li>
-                </ul>
-                <a href="#contacto" className="mt-8 block w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-700 transition-colors">
-                  Elegir plan
-                </a>
+              <div className="flex items-start gap-3">
+                <Shield className="w-6 h-6 text-gray-400 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-sm">Seguridad y respaldo</h4>
+                  <p className="mt-1 text-sm text-gray-600">Tu información siempre protegida.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Headphones className="w-6 h-6 text-gray-400 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-sm">Soporte técnico</h4>
+                  <p className="mt-1 text-sm text-gray-600">Acompañamiento cuando lo necesites.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <RefreshCw className="w-6 h-6 text-gray-400 shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-sm">Sin permanencias</h4>
+                  <p className="mt-1 text-sm text-gray-600">Cancela cuando quieras, sin penalidades.</p>
+                </div>
               </div>
             </div>
-            <p className="mt-8 text-center text-gray-600">
-              10% descuento por pago anual. <span className="font-medium">Ahorra $145.000 al año</span>
-            </p>
           </div>
         </section>
 
