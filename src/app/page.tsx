@@ -115,8 +115,8 @@ const whyUs = [
   },
   {
     icon: MessageCircle,
-    title: 'Notificaciones WhatsApp',
-    description: 'Avisa a clientes sin pagar más.',
+    title: 'WhatsApp Business Oficial',
+    description: 'Notificaciones automáticas vía la API oficial de Meta, sin intermediarios.',
   },
   {
     icon: BarChart3,

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   ChevronDown,
@@ -12,6 +13,8 @@ import {
   FileCheck2,
   MessageCircle,
   Video,
+  Menu,
+  X,
 } from 'lucide-react';
 
 const solutions = [
@@ -38,6 +41,9 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === '/';
   const isNosotros = pathname === '/nosotros' || pathname === '/nosotros/';
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSolucionesOpen, setMobileSolucionesOpen] = useState(false);
+  const [mobileRecursosOpen, setMobileRecursosOpen] = useState(false);
 
   // En el home los links son anclas (#planes); en otras páginas deben volver al home primero.
   const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
@@ -46,6 +52,12 @@ export default function Header() {
     active
       ? 'text-white border-b-2 border-blue-500 pb-1'
       : 'text-gray-300 hover:text-white transition-colors';
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setMobileSolucionesOpen(false);
+    setMobileRecursosOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-white/10">
@@ -109,7 +121,96 @@ export default function Header() {
         <a href={anchor('#contacto')} className="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors">
           Solicitar demo
         </a>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+          className="md:hidden text-white p-2 -mr-2"
+        >
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden border-t border-white/10 bg-slate-900 max-h-[calc(100vh-64px)] overflow-y-auto">
+          <nav className="px-6 py-4 flex flex-col text-sm font-medium">
+            <a href="/" onClick={closeMobileMenu} className={`py-3 ${isHome ? 'text-white' : 'text-gray-300'}`}>
+              Inicio
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMobileSolucionesOpen((v) => !v)}
+              className="flex items-center justify-between py-3 text-gray-300"
+            >
+              Soluciones
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileSolucionesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileSolucionesOpen && (
+              <div className="pl-3 pb-2 flex flex-col gap-0.5">
+                {solutions.map(({ icon: Icon, title }) => (
+                  <a
+                    key={title}
+                    href={anchor('#contacto')}
+                    onClick={closeMobileMenu}
+                    className="flex items-center gap-3 py-2 text-gray-400"
+                  >
+                    <Icon className="w-4 h-4 shrink-0" strokeWidth={1.75} />
+                    <span>{title}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            <a href={anchor('#planes')} onClick={closeMobileMenu} className="py-3 text-gray-300">
+              Planes
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMobileRecursosOpen((v) => !v)}
+              className="flex items-center justify-between py-3 text-gray-300"
+            >
+              Recursos
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileRecursosOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileRecursosOpen && (
+              <div className="pl-3 pb-2 flex flex-col gap-0.5">
+                {tutorials.map((tutorial) => (
+                  <a
+                    key={tutorial.title}
+                    href="#"
+                    onClick={(e) => e.preventDefault()}
+                    className="flex items-center justify-between gap-3 py-2 text-gray-400"
+                  >
+                    <span className="flex items-center gap-3">
+                      <Video className="w-4 h-4 shrink-0" strokeWidth={1.75} />
+                      <span>{tutorial.title}</span>
+                    </span>
+                    <span className="text-[10px] font-medium text-gray-500 bg-white/10 px-1.5 py-0.5 rounded-full whitespace-nowrap">Próximamente</span>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            <a href="/nosotros" onClick={closeMobileMenu} className={`py-3 ${isNosotros ? 'text-white' : 'text-gray-300'}`}>
+              Nosotros
+            </a>
+            <a href={anchor('#contacto')} onClick={closeMobileMenu} className="py-3 text-gray-300">
+              Contacto
+            </a>
+
+            <a
+              href={anchor('#contacto')}
+              onClick={closeMobileMenu}
+              className="mt-3 bg-blue-600 text-white px-5 py-3 rounded-lg font-medium text-center hover:bg-blue-500 transition-colors"
+            >
+              Solicitar demo
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

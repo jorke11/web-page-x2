@@ -203,10 +203,10 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "Question",
-        name: "¿X2 envía notificaciones a los clientes?",
+        name: "¿X2 envía notificaciones a los clientes por WhatsApp?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Sí, X2 envía notificaciones por WhatsApp para informar a tus clientes cuando su vehículo esté listo.",
+          text: "Sí, X2 se integra con la API oficial de WhatsApp Business de Meta para enviar notificaciones automáticas a tus clientes, por ejemplo cuando su vehículo está listo. El costo de los mensajes lo cobra Meta directamente y se paga por separado del plan de X2, sin intermediarios ni sobrecostos.",
         },
       },
     ],
