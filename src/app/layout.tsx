@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     absolute: "X2 - Software para Lavaderos en Colombia | Gestión Integral",
   },
   description:
-    "X2 es el software de gestión para lavaderos más usado en Colombia. Controla órdenes, inventario, gastos, liquidaciones y facturación electrónica DIAN. Prueba gratis 15 días.",
+    "X2 es el software de gestión todo-en-uno para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes en Colombia. Multisucursal, multi centro de costo, reservas por WhatsApp con IA, marketing masivo y facturación electrónica DIAN. Prueba gratis 15 días.",
   keywords: [
     "software para lavaderos",
     "sistema para lavadero",
@@ -30,6 +30,14 @@ export const metadata: Metadata = {
     "control de lavadero",
     "lavadero de carros",
     "lavadero de vehículos Colombia",
+    "software para talleres",
+    "software para taller de pintura",
+    "software para parqueadero",
+    "software para restaurantes",
+    "software multisucursal",
+    "multi centro de costo",
+    "reservas por WhatsApp con IA",
+    "marketing masivo WhatsApp",
     "facturación electrónica DIAN lavadero",
     "programa para lavadero",
     "sistema gestión lavadero",
@@ -58,7 +66,7 @@ export const metadata: Metadata = {
     siteName: "X2 - Software para Lavaderos",
     title: "X2 - Software para Lavaderos en Colombia | Gestión Integral",
     description:
-      "El software de gestión para lavaderos más usado en Colombia. Controla órdenes, inventario, gastos, liquidaciones y facturación electrónica DIAN.",
+      "Software todo-en-uno para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes. Multisucursal, reservas por WhatsApp con IA y facturación electrónica DIAN.",
     url: BASE_URL,
     images: [
       {
@@ -73,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "X2 - Software para Lavaderos en Colombia",
     description:
-      "Controla órdenes, inventario, gastos, liquidaciones y facturación electrónica DIAN para tu lavadero.",
+      "Software para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes: multisucursal, reservas por WhatsApp con IA y facturación DIAN.",
     images: ["/og-image.png"],
     creator: "@x2control",
   },

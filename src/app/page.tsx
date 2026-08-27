@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Header from '@/components/Header';
+import FaqAccordion from '@/components/FaqAccordion';
+import { faqData } from '@/components/SchemaMarkup';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -33,6 +35,7 @@ import {
   Package,
   Mail,
   MapPin,
+  Wrench,
 } from 'lucide-react';
 
 const contactOptions = [
@@ -160,6 +163,13 @@ const solutionCards = [
     description: 'Controla cada detalle de tus servicios especializados para vehículos.',
     features: ['Servicios personalizados', 'Checklist de procesos', 'Materiales e insumos', 'Control de calidad'],
     color: 'bg-purple-100 text-purple-600',
+  },
+  {
+    icon: Wrench,
+    title: 'Talleres y Pintura',
+    description: 'Gestiona órdenes de taller mecánico y pintura, desde el ingreso hasta la entrega.',
+    features: ['Órdenes de taller y pintura', 'Repuestos e insumos', 'Historial por vehículo', 'Notificación al cliente'],
+    color: 'bg-orange-100 text-orange-600',
   },
   {
     icon: FileCheck2,
@@ -687,6 +697,17 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="preguntas-frecuentes" className="py-20 px-6 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-center text-sm font-semibold text-blue-600">FAQ</p>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-center text-gray-900">Preguntas Frecuentes</h2>
+            <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
+              Resolvemos las dudas más comunes sobre el software para lavaderos X2.
+            </p>
+            <FaqAccordion items={faqData} />
           </div>
         </section>
 

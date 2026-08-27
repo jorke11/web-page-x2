@@ -18,14 +18,19 @@ import {
 } from 'lucide-react';
 
 const solutions = [
-  { icon: Car, title: 'Lavadero de Autos' },
-  { icon: SquareParking, title: 'Parqueaderos' },
-  { icon: UtensilsCrossed, title: 'Restaurantes' },
-  { icon: Scissors, title: 'Peluquerías y Barberías' },
-  { icon: Sparkles, title: 'Detailing' },
-  { icon: ShoppingCart, title: 'Inventarios' },
-  { icon: FileCheck2, title: 'Facturación Electrónica' },
-  { icon: MessageCircle, title: 'Marketing por WhatsApp' },
+  { icon: Car, title: 'Lavadero de Autos', href: '/software-lavadero' },
+  { icon: SquareParking, title: 'Parqueaderos', href: '/software-parqueadero' },
+  { icon: UtensilsCrossed, title: 'Restaurantes', href: '/#funciones' },
+  { icon: Scissors, title: 'Peluquerías y Barberías', href: '/#funciones' },
+  { icon: Sparkles, title: 'Detailing', href: '/#funciones' },
+  { icon: ShoppingCart, title: 'Inventarios', href: '/#funciones' },
+  { icon: FileCheck2, title: 'Facturación Electrónica', href: '/#funciones' },
+  { icon: MessageCircle, title: 'Marketing por WhatsApp', href: '/#funciones' },
+];
+
+const resources = [
+  { title: 'Blog', href: '/blog' },
+  { title: 'X2 vs Hangar', href: '/x2-vs-hangar' },
 ];
 
 // Tutoriales en video: pendientes por recibir (YouTube/TikTok/Instagram). Se linkean a "#" hasta entonces.
@@ -74,10 +79,10 @@ export default function Header() {
             </button>
             <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
               <div className="w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-2 grid grid-cols-1 gap-0.5">
-                {solutions.map(({ icon: Icon, title }) => (
+                {solutions.map(({ icon: Icon, title, href }) => (
                   <a
                     key={title}
-                    href={anchor('#contacto')}
+                    href={href}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
                   >
                     <Icon className="w-4.5 h-4.5 shrink-0" strokeWidth={1.75} />
@@ -96,7 +101,16 @@ export default function Header() {
             </button>
             <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
               <div className="w-72 bg-white rounded-xl shadow-2xl border border-gray-100 p-2">
-                <p className="px-3 pt-1.5 pb-2 text-xs font-semibold text-gray-400 tracking-wide">TUTORIALES</p>
+                {resources.map((resource) => (
+                  <a
+                    key={resource.title}
+                    href={resource.href}
+                    className="flex items-center px-3 py-2.5 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors text-sm font-normal"
+                  >
+                    {resource.title}
+                  </a>
+                ))}
+                <p className="px-3 pt-3 pb-2 text-xs font-semibold text-gray-400 tracking-wide border-t border-gray-100 mt-1">TUTORIALES</p>
                 {tutorials.map((tutorial) => (
                   <a
                     key={tutorial.title}
@@ -149,10 +163,10 @@ export default function Header() {
             </button>
             {mobileSolucionesOpen && (
               <div className="pl-3 pb-2 flex flex-col gap-0.5">
-                {solutions.map(({ icon: Icon, title }) => (
+                {solutions.map(({ icon: Icon, title, href }) => (
                   <a
                     key={title}
-                    href={anchor('#contacto')}
+                    href={href}
                     onClick={closeMobileMenu}
                     className="flex items-center gap-3 py-2 text-gray-400"
                   >
@@ -177,6 +191,16 @@ export default function Header() {
             </button>
             {mobileRecursosOpen && (
               <div className="pl-3 pb-2 flex flex-col gap-0.5">
+                {resources.map((resource) => (
+                  <a
+                    key={resource.title}
+                    href={resource.href}
+                    onClick={closeMobileMenu}
+                    className="py-2 text-gray-400"
+                  >
+                    {resource.title}
+                  </a>
+                ))}
                 {tutorials.map((tutorial) => (
                   <a
                     key={tutorial.title}

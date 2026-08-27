@@ -21,6 +21,55 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://x2control.com/software-lavadero/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/software-lavadero/"/>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/software-parqueadero/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/software-parqueadero/"/>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/x2-vs-hangar/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/x2-vs-hangar/"/>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/blog/"/>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/blog/como-administrar-un-lavadero-de-autos-en-colombia/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/blog/como-administrar-un-lavadero-de-autos-en-colombia/"/>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/blog/cuanto-cuesta-un-software-para-lavadero-en-colombia/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/blog/cuanto-cuesta-un-software-para-lavadero-en-colombia/"/>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://x2control.com/blog/como-administrar-un-taller-mecanico-y-pintura/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/blog/como-administrar-un-taller-mecanico-y-pintura/"/>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://x2control.com/terminos/</loc>
     <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/terminos/"/>
     <lastmod>2026-05-12</lastmod>

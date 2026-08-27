@@ -1,5 +1,33 @@
 const BASE_URL = "https://x2control.com";
 
+// Fuente única para el FAQ: se usa tanto para el schema.org (abajo) como para
+// el acordeón visible en la home (page.tsx). Google exige que el contenido de
+// FAQPage este tambien visible en la pagina, no solo en el JSON-LD.
+export const faqData: { question: string; answer: string }[] = [
+  {
+    question: "¿Cuánto cuesta el software para lavaderos X2?",
+    answer:
+      "X2 tiene planes desde $121.000 COP/mes. El Plan Base incluye reportes de ventas, caja diaria y módulo administrativo. El Plan Pro ($171.000/mes) agrega inventario, kardex, control de costos y cámara IA. El Plan Full ($221.000/mes) incluye parqueadero, voz IA y soporte prioritario, todo activo sin restricciones.",
+  },
+  {
+    question: "¿Puedo probar X2 antes de comprarlo?",
+    answer: "Sí, ofrecemos 15 días de prueba gratis sin compromiso. No necesitas tarjeta de crédito para comenzar.",
+  },
+  {
+    question: "¿X2 cumple con la facturación electrónica DIAN?",
+    answer: "Sí, X2 cuenta con módulo de facturación electrónica que cumple con todos los requisitos de la DIAN de Colombia.",
+  },
+  {
+    question: "¿Puedo acceder a X2 desde mi celular?",
+    answer: "Sí, X2 es una aplicación web responsive que funciona desde cualquier dispositivo: computador, tablet o celular.",
+  },
+  {
+    question: "¿X2 envía notificaciones a los clientes por WhatsApp?",
+    answer:
+      "Sí, X2 se integra con la API oficial de WhatsApp Business de Meta para enviar notificaciones automáticas a tus clientes, por ejemplo cuando su vehículo está listo. El costo de los mensajes lo cobra Meta directamente y se paga por separado del plan de X2, sin intermediarios ni sobrecostos.",
+  },
+];
+
 export default function SchemaMarkup() {
   const schemaOrganization = {
     "@context": "https://schema.org",
@@ -15,7 +43,7 @@ export default function SchemaMarkup() {
       height: 200,
     },
     description:
-      "X2 es el software de gestión para lavaderos más usado en Colombia. Controla órdenes, inventario, gastos, liquidaciones y facturación electrónica DIAN.",
+      "X2 es el software de gestión todo-en-uno para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes en Colombia. Incluye multisucursal, multi centro de costo, reservas por WhatsApp con IA, marketing masivo y facturación electrónica DIAN.",
     foundingDate: "2023",
     foundingLocation: "Colombia",
     contactPoint: {
@@ -94,11 +122,14 @@ export default function SchemaMarkup() {
       bestRating: "5",
     },
     description:
-      "Software de gestión integral para lavaderos de vehículos. Controla ventas, inventario, kardex, costos, parqueadero y reconocimiento de placas por IA.",
+      "Software de gestión integral para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes. Multisucursal y multi centro de costo, con ventas, inventario, kardex, costos, reservas por WhatsApp con IA y reconocimiento de placas por IA.",
     features: [
       "Reportes de ventas y caja diaria",
       "Control de inventario y kardex automático",
       "Control de costos",
+      "Multisucursal y multi centro de costo",
+      "Reservas manuales y por WhatsApp con IA",
+      "Marketing masivo por WhatsApp",
       "Control de parqueadero",
       "Cámara IA - reconocimiento de placas",
       "Voz IA",
@@ -168,48 +199,14 @@ export default function SchemaMarkup() {
   const schemaFAQ = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "¿Cuánto cuesta el software para lavaderos X2?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "X2 tiene planes desde $121.000 COP/mes. El Plan Base incluye reportes de ventas, caja diaria y módulo administrativo. El Plan Pro ($171.000/mes) agrega inventario, kardex, control de costos y cámara IA. El Plan Full ($221.000/mes) incluye parqueadero, voz IA y soporte prioritario, todo activo sin restricciones.",
-        },
+    mainEntity: faqData.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
       },
-      {
-        "@type": "Question",
-        name: "¿Puedo probar X2 antes de comprarlo?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí, ofrecemos 15 días de prueba gratis sin compromiso. No necesitas tarjeta de crédito para comenzar.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿X2 cumple con la facturación electrónica DIAN?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí, X2 cuenta con módulo de facturación electrónica que cumple con todos los requisitos de la DIAN de Colombia.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿Puedo acceder a X2 desde mi celular?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí, X2 es una aplicación web responsive que funciona desde cualquier dispositivo: computador, tablet o celular.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿X2 envía notificaciones a los clientes por WhatsApp?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí, X2 se integra con la API oficial de WhatsApp Business de Meta para enviar notificaciones automáticas a tus clientes, por ejemplo cuando su vehículo está listo. El costo de los mensajes lo cobra Meta directamente y se paga por separado del plan de X2, sin intermediarios ni sobrecostos.",
-        },
-      },
-    ],
+    })),
   };
 
   const schemaLocalBusiness = {
@@ -218,7 +215,7 @@ export default function SchemaMarkup() {
     "@id": `${BASE_URL}/#localbusiness`,
     name: "X2 - OnixTech SAS",
     description:
-      "Desarrollador de software de gestión para lavaderos de vehículos en Colombia.",
+      "Desarrollador de software de gestión para lavaderos, talleres, pintura, detailing, parqueaderos y restaurantes en Colombia.",
     url: BASE_URL,
     telephone: "+57-310-4864748",
     email: "onixtechsas@gmail.com",
@@ -230,7 +227,7 @@ export default function SchemaMarkup() {
       "@type": "Country",
       name: "Colombia",
     },
-    serviceType: "Software de Gestión para Lavaderos",
+    serviceType: "Software de Gestión para Lavaderos, Talleres y Parqueaderos",
     priceRange: "$$",
   };
 
