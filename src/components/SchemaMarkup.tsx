@@ -177,7 +177,7 @@ export default function SchemaMarkup() {
   const schemaWebSite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id:": `${BASE_URL}/#website`,
+    "@id": `${BASE_URL}/#website`,
     name: "X2 - Software para Lavaderos",
     url: BASE_URL,
     description:
@@ -231,12 +231,31 @@ export default function SchemaMarkup() {
     priceRange: "$$",
   };
 
+  const siteNavigationLinks: { name: string; url: string }[] = [
+    { name: "Inicio", url: `${BASE_URL}/` },
+    { name: "Software para Lavaderos", url: `${BASE_URL}/software-lavadero/` },
+    { name: "Software para Parqueaderos", url: `${BASE_URL}/software-parqueadero/` },
+    { name: "X2 vs Hangar", url: `${BASE_URL}/x2-vs-hangar/` },
+    { name: "Blog", url: `${BASE_URL}/blog/` },
+    { name: "Nosotros", url: `${BASE_URL}/nosotros/` },
+    { name: "Planes", url: `${BASE_URL}/#planes` },
+    { name: "Contacto", url: `${BASE_URL}/#contacto` },
+  ];
+
+  const schemaSiteNavigation = siteNavigationLinks.map((link) => ({
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: link.name,
+    url: link.url,
+  }));
+
   const schemas = [
     schemaOrganization,
     schemaSoftwareApp,
     schemaWebSite,
     schemaFAQ,
     schemaLocalBusiness,
+    ...schemaSiteNavigation,
   ];
 
   return (

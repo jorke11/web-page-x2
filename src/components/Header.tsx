@@ -20,8 +20,8 @@ import {
 const solutions = [
   { icon: Car, title: 'Lavadero de Autos', href: '/software-lavadero' },
   { icon: SquareParking, title: 'Parqueaderos', href: '/software-parqueadero' },
-  { icon: UtensilsCrossed, title: 'Restaurantes', href: '/#funciones' },
-  { icon: Scissors, title: 'Peluquerías y Barberías', href: '/#funciones' },
+  { icon: UtensilsCrossed, title: 'Restaurantes', href: '/software-restaurante' },
+  { icon: Scissors, title: 'Peluquerías y Barberías', href: '/software-peluqueria' },
   { icon: Sparkles, title: 'Detailing', href: '/#funciones' },
   { icon: ShoppingCart, title: 'Inventarios', href: '/#funciones' },
   { icon: FileCheck2, title: 'Facturación Electrónica', href: '/#funciones' },
