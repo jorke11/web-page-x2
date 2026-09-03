@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -112,6 +113,7 @@ export default function RootLayout({
     <html lang="es" className={cn("font-sans", geist.variable)}>
       <body className="min-h-full flex flex-col">
         <SchemaMarkup />
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
