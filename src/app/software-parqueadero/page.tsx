@@ -71,7 +71,7 @@ const faqItems = [
   {
     question: "¿Cuánto cuesta un software para parqueadero en Colombia?",
     answer:
-      "Con X2, el módulo de parqueadero está incluido en el Plan Full por $221.000 COP/mes, junto con inventario, kardex, control de costos, voz IA y cámara IA para reconocimiento de placas.",
+      "Con X2, el módulo de parqueadero está incluido en el Plan Avanzado por $221.000 COP/mes, junto con inventario, kardex, control de costos, voz IA y cámara IA para reconocimiento de placas.",
   },
   {
     question: "¿Puedo cobrar tarifas distintas para mensualidades y visitantes ocasionales?",
@@ -86,7 +86,7 @@ const faqItems = [
   {
     question: "¿Sirve para parqueaderos que también tienen lavadero?",
     answer:
-      "Sí, es uno de los casos más comunes en X2: el Plan Full incluye lavadero y parqueadero en un solo precio, compartiendo clientes y reportes entre ambos módulos.",
+      "Sí, es uno de los casos más comunes en X2: el Plan Avanzado incluye lavadero y parqueadero en un solo precio, compartiendo clientes y reportes entre ambos módulos.",
   },
 ];
 
@@ -151,7 +151,7 @@ export default function SoftwareParqueadero() {
           <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10">
             <h2 className="text-2xl font-bold text-gray-900">¿Tu parqueadero funciona junto a un lavadero?</h2>
             <p className="mt-3 text-gray-700">
-              El Plan Full de X2 combina lavadero y parqueadero en un solo precio ($221.000/mes), compartiendo
+              El Plan Avanzado de X2 combina lavadero y parqueadero en un solo precio ($221.000/mes), compartiendo
               clientes, usuarios y reportes entre ambos módulos.
             </p>
             <ul className="mt-5 space-y-2">

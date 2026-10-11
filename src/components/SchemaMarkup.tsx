@@ -7,7 +7,7 @@ export const faqData: { question: string; answer: string }[] = [
   {
     question: "¿Cuánto cuesta el software para lavaderos X2?",
     answer:
-      "X2 tiene planes desde $121.000 COP/mes. El Plan Base incluye reportes de ventas, caja diaria y módulo administrativo. El Plan Pro ($171.000/mes) agrega inventario, kardex, control de costos y cámara IA. El Plan Full ($221.000/mes) incluye parqueadero, voz IA y soporte prioritario, todo activo sin restricciones.",
+      "X2 tiene planes desde $121.000 COP/mes. El Plan Básico (3 usuarios) incluye clientes y vehículos por placa, 4 fotos por vehículo, órdenes de servicio, caja y reportes. El Plan Intermedio ($189.000/mes, 5 usuarios) agrega 8 fotos por vehículo, facturación electrónica DIAN, reservas, inventario y kardex. El Plan Avanzado ($221.000/mes) incluye reservas con IA, registro multimedia completo (10 fotos y 1 video), usuarios ilimitados, certificado digital de firma y soporte prioritario. Precios con IVA incluido.",
   },
   {
     question: "¿Puedo probar X2 antes de comprarlo?",
@@ -77,7 +77,7 @@ export default function SchemaMarkup() {
     offers: [
       {
         "@type": "Offer",
-        name: "Plan Base",
+        name: "Plan Básico",
         price: "121000",
         priceCurrency: "COP",
         priceSpecification: {
@@ -90,8 +90,8 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "Offer",
-        name: "Plan Pro",
-        price: "171000",
+        name: "Plan Intermedio",
+        price: "189000",
         priceCurrency: "COP",
         priceSpecification: {
           "@type": "UnitPriceSpecification",
@@ -103,7 +103,7 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "Offer",
-        name: "Plan Full",
+        name: "Plan Avanzado",
         price: "221000",
         priceCurrency: "COP",
         priceSpecification: {

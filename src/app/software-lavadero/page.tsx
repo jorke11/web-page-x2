@@ -112,7 +112,7 @@ const faqItems = [
   {
     question: "¿Cuánto cuesta un software para lavadero de carros en Colombia?",
     answer:
-      "Con X2 el plan de entrada cuesta $121.000 COP/mes e incluye caja diaria, reportes de ventas, anticipos a trabajadores y notificaciones por WhatsApp. Los planes suben a $171.000 y $221.000/mes según los módulos que necesites (inventario, cámara IA, parqueadero).",
+      "Con X2 el plan de entrada cuesta $121.000 COP/mes e incluye caja diaria, reportes de ventas, anticipos a trabajadores y notificaciones por WhatsApp. Los planes suben a $189.000 y $221.000/mes según los módulos que necesites (inventario, cámara IA, parqueadero).",
   },
   {
     question: "¿El software calcula las comisiones de los lavadores?",
@@ -203,7 +203,7 @@ export default function SoftwareLavadero() {
           <div className="max-w-4xl mx-auto bg-blue-50 rounded-2xl p-8 md:p-10">
             <h2 className="text-2xl font-bold text-gray-900">¿Tu lavadero también tiene parqueadero?</h2>
             <p className="mt-3 text-gray-700">
-              El Plan Full de X2 incluye el módulo de parqueadero en el mismo precio, sin contratar un
+              El Plan Avanzado de X2 incluye el módulo de parqueadero en el mismo precio, sin contratar un
               producto aparte.
             </p>
             <ul className="mt-5 space-y-2">

@@ -26,7 +26,7 @@ const priceRows = [
   },
   {
     label: "Plan intermedio",
-    x2: "$171.000/mes",
+    x2: "$189.000/mes",
     hangar: "$375.000/mes (Platinum)",
   },
   {
@@ -36,7 +36,7 @@ const priceRows = [
   },
   {
     label: "Parqueadero incluido",
-    x2: "Sí, dentro del Plan Full ($221.000/mes)",
+    x2: "Sí, dentro del Plan Avanzado ($221.000/mes)",
     hangar: "No, es un producto aparte (planes desde $125.000/mes adicionales)",
   },
   {
@@ -74,7 +74,7 @@ const faqItems = [
   {
     question: "¿Cuál es más barato?",
     answer:
-      "A precios de agosto de 2026, el plan de entrada de X2 cuesta $121.000/mes frente a $245.000/mes del plan Gold de Hangar. Si tu lavadero también necesita parqueadero, la diferencia crece más: en Hangar el parqueadero es un producto separado, mientras que en X2 va incluido en el Plan Full.",
+      "A precios de agosto de 2026, el plan de entrada de X2 cuesta $121.000/mes frente a $245.000/mes del plan Gold de Hangar. Si tu lavadero también necesita parqueadero, la diferencia crece más: en Hangar el parqueadero es un producto separado, mientras que en X2 va incluido en el Plan Avanzado.",
   },
   {
     question: "¿Hangar cobra la facturación electrónica aparte?",
@@ -197,7 +197,7 @@ export default function X2VsHangar() {
               <h3 className="mt-4 font-semibold text-gray-900 text-lg">Lavadero + parqueadero, un solo precio</h3>
               <p className="mt-3 text-sm text-gray-600 leading-relaxed">
                 Si tu negocio combina lavadero y parqueadero, en Hangar necesitas contratar dos productos
-                (aunque tengan un combo con descuento). En X2, el Plan Full por $221.000/mes ya incluye el
+                (aunque tengan un combo con descuento). En X2, el Plan Avanzado por $221.000/mes ya incluye el
                 módulo de parqueadero, sin producto ni factura aparte.
               </p>
             </div>

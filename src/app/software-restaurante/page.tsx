@@ -65,6 +65,11 @@ const features = [
     title: "Notificaciones por WhatsApp",
     description: "Confirma pedidos y avisa a domicilios automáticamente por la API oficial de WhatsApp Business.",
   },
+  {
+    icon: MessageCircle,
+    title: "Domicilios IA",
+    description: "Recibe pedidos de domicilios por WhatsApp, con confirmación automática y montaje al POS.",
+  },
 ];
 
 const faqItems = [

@@ -13,7 +13,6 @@ import {
   TrendingUp,
   Crown,
   Camera,
-  Mic,
   MessageCircle,
   Star,
   Cloud,
@@ -56,16 +55,42 @@ const contactOptions = [
   { value: 'otro', label: 'Otro' },
 ];
 
+const faqLinks = [
+  {
+    icon: MessageCircle,
+    label: 'MIVA',
+    description: 'Envía mensajes a tus clientes por la API oficial de WhatsApp, conectada a Meta.',
+    href: 'https://miva.x2control.com',
+    color: 'bg-purple-100 text-purple-600',
+  },
+  {
+    icon: FileCheck2,
+    label: 'Facturación electrónica',
+    description: 'Emite y gestiona tus facturas electrónicas con cumplimiento DIAN.',
+    href: 'https://fe.x2control.com',
+    color: 'bg-indigo-100 text-indigo-600',
+  },
+  {
+    icon: Camera,
+    label: 'Visión artificial',
+    description: 'Lee placas, analiza recibos de pago y registra tus compras con inteligencia artificial.',
+    href: 'https://vision.x2control.com',
+    color: 'bg-emerald-100 text-emerald-600',
+  },
+];
+
 const contactInfo = [
   {
     icon: MessageCircle,
     title: 'Escríbenos',
     lines: ['WhatsApp / Chat', '310 486 4748'],
+    links: { '310 486 4748': 'https://wa.me/573104864748' } as Record<string, string>,
   },
   {
     icon: Mail,
     title: 'Email',
     lines: ['onixtechsas@gmail.com', 'Respondemos en menos de 24 horas.'],
+    links: { 'onixtechsas@gmail.com': 'mailto:onixtechsas@gmail.com' } as Record<string, string>,
   },
   {
     icon: MapPin,
@@ -277,65 +302,72 @@ const solutionCards = [
 
 const plans = [
   {
-    name: 'Plan Base',
+    name: 'Plan Básico',
     price: '$121.000',
-    tagline: 'Ideal para empezar a controlar tu lavadero.',
+    users: '3 usuarios',
+    tagline: 'Diseñado para establecimientos que buscan organizar y controlar la operación esencial.',
     icon: ClipboardList,
     accent: 'green',
     features: [
-      'Reportes de ventas',
-      'Caja diaria',
-      'Registro de egresos',
-      'Anticipos y pagos a trabajadores',
-      'Cartera de servicios',
-      'Módulo administrativo',
-      'Notificaciones automáticas por WhatsApp*',
-      'Impresión de tickets (POS 58mm / 80mm)',
-      'Soporte estándar',
+      'Gestión de clientes y vehículos por placa',
+      'Registro multimedia: 4 fotos por vehículo',
+      'Administración de catálogo de servicios y tarifas',
+      'Generación y seguimiento de órdenes de servicio',
+      'Control de ventas y medios de pago',
+      'Apertura, arqueo y cierre de caja',
+      'Reportes de ventas y operación general',
+      'Administración de usuarios y soporte técnico',
+      'Liquidación de trabajadores',
+      'Integración WhatsApp Business (Meta).* Los costos de los mensajes de WhatsApp son asumidos por el cliente',
     ],
-    whatsapp: [6],
+    bold: [1],
+    whatsapp: [9],
+    notes: ['No incluye facturación electrónica.'],
     button: 'bg-green-600 hover:bg-green-700',
   },
   {
-    name: 'Plan Pro',
-    price: '$171.000',
-    tagline: 'Para lavaderos que quieren mayor control y automatización.',
+    name: 'Plan Intermedio',
+    price: '$189.000',
+    users: '5 usuarios',
+    tagline: 'Orientado a lavaderos que requieren facturación electrónica, reservas e inventario.',
     icon: TrendingUp,
+    accent: 'purple',
+    features: [
+      'Incluye la totalidad del Plan Básico, más:',
+      'Registro multimedia: 8 fotos por vehículo',
+      'Facturación electrónica DIAN',
+      'Módulo de agendamiento y reservas estándar',
+      'Gestión y control de inventarios',
+      'Registro de entradas y salidas (Kardex)',
+      'Reportes ampliados de operación',
+      'Integración WhatsApp Business (Meta).* Los costos de los mensajes de WhatsApp son asumidos por el cliente',
+    ],
+    bold: [0, 1],
+    whatsapp: [7],
+    notes: ['No incluye certificado digital de firma.'],
+    button: 'bg-purple-600 hover:bg-purple-700',
+  },
+  {
+    name: 'Plan Avanzado',
+    price: '$221.000',
+    users: 'Usuarios ilimitados',
+    tagline: 'La solución integral definitiva con inteligencia artificial, registro audiovisual completo y certificado digital.',
+    icon: Crown,
     accent: 'blue',
     popular: true,
     features: [
-      'Todo lo incluido en Plan Base',
-      'Módulo de tienda',
-      'Control de inventario',
-      'Kardex automático',
-      'Control de costos',
-      'Cámara IA – reconocimiento de placas',
-      'Notificaciones automáticas por WhatsApp*',
+      'Incluye la totalidad del Plan Intermedio, más:',
+      'Reservas con Inteligencia Artificial (IA) para agendamiento automatizado',
+      'Registro multimedia completo: hasta 10 fotos y 1 video (30s) por vehículo',
+      'Certificado digital de firma incluido',
+      'Acceso para usuarios ilimitados',
+      'Acceso completo sin restricciones operativas',
+      'Atención y soporte prioritario',
+      'Integración WhatsApp Business (Meta).* Los costos de los mensajes de WhatsApp son asumidos por el cliente',
     ],
-    camera: [5],
-    whatsapp: [6],
+    bold: [0, 1, 2],
+    whatsapp: [7],
     button: 'bg-blue-600 hover:bg-blue-700',
-  },
-  {
-    name: 'Plan Full',
-    price: '$221.000',
-    tagline: 'Todo el potencial de X2 para llevar tu lavadero al siguiente nivel.',
-    icon: Crown,
-    accent: 'purple',
-    features: [
-      'Ventas',
-      'Inventario + Kardex + Costos',
-      'Parking',
-      'Voz IA',
-      'Cámara IA – reconocimiento de placas',
-      'Notificaciones automáticas por WhatsApp*',
-      'Soporte prioritario',
-      'Todo activo, sin restricciones',
-    ],
-    voice: [3],
-    camera: [4],
-    whatsapp: [5],
-    button: 'bg-purple-600 hover:bg-purple-700',
   },
 ];
 
@@ -632,7 +664,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="planes" className="py-20 px-6 bg-gray-50">
+        <section id="planes" className="py-14 px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
             <p className="text-center text-sm font-semibold text-blue-600">Planes X2</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-bold text-center text-gray-900">Planes claros, sin letra pequeña</h2>
@@ -640,57 +672,60 @@ export default function Home() {
               Elige lo que necesitas. Sin permanencias, cancela cuando quieras.
             </p>
 
-            <div className="mt-12 grid md:grid-cols-3 gap-8 items-start">
+            {/* Tarjetas del mismo alto (items-stretch + h-full) con el boton siempre abajo (mt-auto); en pantallas
+                angostas pasan a una sola columna centrada. */}
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch max-w-md lg:max-w-none mx-auto">
               {plans.map((plan) => {
                 const styles = accentStyles[plan.accent];
                 const Icon = plan.icon;
                 return (
                   <Card
                     key={plan.name}
-                    className={`relative gap-0 overflow-visible ${
-                      plan.popular
-                        ? `${styles.border} shadow-lg p-8 pt-12 md:pb-12`
-                        : `${styles.border} shadow-sm p-8`
+                    className={`relative h-full flex flex-col gap-0 overflow-visible p-6 ${styles.border} ${
+                      plan.popular ? 'shadow-lg ring-2 ring-blue-500/70' : 'shadow-sm'
                     }`}
                   >
                     {plan.popular && (
                       <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 h-auto px-3 py-1 text-xs whitespace-nowrap ${styles.badge}`}>
-                        MÁS POPULAR
+                        RECOMENDADO
                       </Badge>
                     )}
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${styles.icon}`}>
-                      <Icon className="w-6 h-6" />
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center ${styles.icon}`}>
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className={`text-sm font-bold tracking-wide ${styles.title}`}>{plan.name.toUpperCase()}</h3>
                     </div>
-                    <h3 className={`mt-4 text-sm font-bold tracking-wide ${styles.title}`}>{plan.name.toUpperCase()}</h3>
-                    <p className="mt-2 text-4xl font-bold text-gray-900">
+                    <p className="mt-4 text-3xl font-bold text-gray-900 leading-none">
                       {plan.price}
-                      <span className="text-lg font-normal text-gray-600">/mes</span>
+                      <span className="ml-1 text-sm font-normal text-gray-500">/mes</span>
                     </p>
-                    <p className={`mt-3 text-sm ${styles.title}`}>{plan.tagline}</p>
+                    <p className="mt-1 text-xs text-gray-500">IVA incluido</p>
+                    <span className={`mt-3 self-start rounded-md px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${styles.badge}`}>
+                      {plan.users}
+                    </span>
+                    <p className="mt-3 text-sm italic text-gray-600 min-h-[3.75rem]">{plan.tagline}</p>
 
-                    <ul className="mt-6 space-y-3 border-t border-gray-100 pt-6">
+                    <ul className="mt-4 mb-6 space-y-2 border-t border-gray-100 pt-4">
                       {plan.features.map((feature, i) => (
-                        <li key={feature} className="flex items-start gap-3 text-sm text-gray-600">
-                          <Check className={`w-5 h-5 shrink-0 ${styles.check}`} />
-                          <span>
+                        <li key={feature} className="flex items-start gap-2.5 text-[13px] leading-snug text-gray-600">
+                          <Check className={`w-4 h-4 mt-0.5 shrink-0 ${styles.check}`} />
+                          <span className={plan.bold?.includes(i) ? 'font-semibold text-gray-900' : undefined}>
                             {feature}
-                            {plan.camera?.includes(i) && (
-                              <Camera className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-gray-400" />
-                            )}
-                            {plan.voice?.includes(i) && (
-                              <Mic className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-gray-400" />
-                            )}
                             {plan.whatsapp?.includes(i) && (
-                              <MessageCircle className="inline-block w-4 h-4 ml-1.5 -mt-0.5 text-green-500" />
+                              <MessageCircle className="inline-block w-3.5 h-3.5 ml-1.5 -mt-0.5 text-green-500" />
                             )}
                           </span>
                         </li>
+                      ))}
+                      {plan.notes?.map((note) => (
+                        <li key={note} className="text-[13px] italic text-gray-500">{note}</li>
                       ))}
                     </ul>
 
                     <a
                       href="#contacto"
-                      className={`mt-8 block w-full text-white px-6 py-3 rounded-lg font-medium text-center transition-colors ${plan.button}`}
+                      className={`mt-auto block w-full text-white px-6 py-2.5 rounded-lg font-medium text-center transition-colors ${plan.button}`}
                     >
                       Elegir plan
                     </a>
@@ -708,51 +743,6 @@ export default function Home() {
                 <br />
                 X2 realiza la integración con la API oficial de WhatsApp Business de Meta.
               </p>
-            </div>
-
-            <div className="mt-6 grid md:grid-cols-2 gap-6">
-              <Card className="gap-0 border-amber-200 bg-amber-50 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                    <Camera className="w-6 h-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-semibold text-gray-900">Cámara IA – PLUS para Plan Base</h4>
-                      <Badge className="bg-amber-200 text-amber-800 h-auto px-2 py-0.5 text-[10px]">PLUS</Badge>
-                    </div>
-                    <p className="mt-2 text-sm text-gray-600">
-                      Agrega reconocimiento automático de placas a tu Plan Base. Mejora el control de entradas y la experiencia de tus clientes.
-                    </p>
-                    <div className="mt-4 flex items-center gap-4">
-                      <span className="text-xl font-bold text-amber-700">+ $25.000<span className="text-sm font-normal">/mes</span></span>
-                      <a href="#contacto" className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        Agregar Cámara IA
-                      </a>
-                    </div>
-                    <p className="mt-3 text-xs text-gray-500">
-                      Disponible como complemento del Plan Base. La instalación y el hardware de la cámara pueden tener costo adicional según la configuración.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="gap-0 border-blue-100 bg-blue-50/50 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                    <Star className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">¿Quieres más control?</h4>
-                    <p className="mt-2 text-sm text-gray-600">
-                      Por solo $25.000 más que el complemento de Cámara IA, obtienes el Plan Pro completo con inventario, kardex y control de costos.
-                    </p>
-                    <a href="#contacto" className="mt-4 inline-block border border-blue-300 bg-white hover:bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                      Conocer Plan Pro
-                    </a>
-                  </div>
-                </div>
-              </Card>
             </div>
 
             <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -790,6 +780,26 @@ export default function Home() {
 
         <section id="preguntas-frecuentes" className="py-20 px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
+            <div className="mb-14 grid gap-6 md:grid-cols-3">
+              {faqLinks.map(({ icon: Icon, label, description, href, color }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 flex flex-col"
+                >
+                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${color}`}>
+                    <Icon className="w-7 h-7" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold text-gray-900">{label}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed flex-1">{description}</p>
+                  <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 group-hover:gap-2 transition-all">
+                    Conocer más <ArrowRight className="w-4 h-4" />
+                  </span>
+                </a>
+              ))}
+            </div>
             <p className="text-center text-sm font-semibold text-blue-600">FAQ</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-bold text-center text-gray-900">Preguntas Frecuentes</h2>
             <p className="mt-4 text-center text-gray-600 max-w-2xl mx-auto">
@@ -823,14 +833,18 @@ export default function Home() {
               </p>
 
               <div className="mt-10 grid sm:grid-cols-3 gap-4">
-                {contactInfo.map(({ icon: Icon, title, lines }) => (
+                {contactInfo.map(({ icon: Icon, title, lines, links }) => (
                   <div key={title} className="bg-gray-50 rounded-2xl border border-gray-100 p-5 text-center">
                     <div className="w-11 h-11 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
                       <Icon className="w-5 h-5 text-blue-600" strokeWidth={1.75} />
                     </div>
                     <h3 className="mt-3 text-sm font-semibold text-gray-900">{title}</h3>
                     {lines.map((line) => (
-                      <p key={line} className="mt-1 text-xs text-gray-500 leading-relaxed">{line}</p>
+                      links?.[line] ? (
+                        <a key={line} href={links[line]} {...(links[line].startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })} className="mt-1 block text-xs font-medium text-blue-600 hover:text-blue-700 hover:underline leading-relaxed">{line}</a>
+                      ) : (
+                        <p key={line} className="mt-1 text-xs text-gray-500 leading-relaxed">{line}</p>
+                      )
                     ))}
                   </div>
                 ))}
