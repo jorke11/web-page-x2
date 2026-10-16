@@ -27,7 +27,7 @@ export default function Privacidad() {
 
           <div className="mt-12 space-y-8 text-gray-700">
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900">1. Información que collectamos</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">1. Información que recopilamos</h2>
               <p className="mt-4">
                 X2 puede recopilar la siguiente información de los usuarios:
               </p>
@@ -38,6 +38,7 @@ export default function Privacidad() {
                 <li>Historial de transacciones y órdenes de servicio</li>
                 <li>Información de inventario y ventas</li>
                 <li>Datos de acceso mediante Facebook (si aplica)</li>
+                <li>Ubicación geográfica del dispositivo de los domiciliarios (ver sección 8)</li>
               </ul>
             </section>
 
@@ -106,7 +107,31 @@ export default function Privacidad() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900">8. Menores de edad</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">8. Datos de ubicación (domiciliarios)</h2>
+              <p className="mt-4">
+                La aplicación móvil de X2 recopila la ubicación precisa (GPS) del dispositivo de los
+                usuarios con rol de domiciliario, únicamente mientras tienen un servicio o pedido a domicilio
+                activo, incluso cuando la aplicación está cerrada o en segundo plano.
+              </p>
+              <p className="mt-4">Usamos esta ubicación para:</p>
+              <ul className="mt-4 space-y-2 list-disc list-inside">
+                <li>Mostrar al negocio la ubicación en tiempo real del domiciliario y el estado de la entrega</li>
+                <li>Asignar y gestionar pedidos a domicilio y calcular rutas y tiempos de entrega</li>
+                <li>Permitir que el cliente haga seguimiento a su pedido, cuando el negocio lo habilite</li>
+              </ul>
+              <p className="mt-4">
+                La ubicación solo se comparte con el negocio para el que trabaja el domiciliario y no se utiliza
+                para publicidad ni se vende a terceros. La recopilación se detiene cuando finaliza la entrega
+                o el domiciliario termina su turno. El domiciliario puede revocar el permiso de ubicación en
+                cualquier momento desde los ajustes de su dispositivo, sin embargo, sin este permiso no
+                podrá usar las funciones de entrega a domicilio. Los datos de ubicación se conservan solo el
+                tiempo necesario para la operación y el historial de entregas, y puedes solicitar su
+                eliminación escribiendo a los datos de contacto indicados abajo.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900">9. Menores de edad</h2>
               <p className="mt-4">
                 X2 no está diseñado para menores de edad. No recopilamos intencionalmente información 
                 de personas menores de 18 años.
@@ -114,7 +139,7 @@ export default function Privacidad() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900">9. Cambios a esta política</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">10. Cambios a esta política</h2>
               <p className="mt-4">
                 Esta política puede actualizarse periódicamente. Te notificaremos cualquier cambio 
                 significativo mediante la aplicación o correo electrónico.
@@ -122,7 +147,7 @@ export default function Privacidad() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900">10. Contacto</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">11. Contacto</h2>
               <p className="mt-4">
                 Si tienes preguntas sobre esta Política de Privacidad, contacta a:
               </p>
