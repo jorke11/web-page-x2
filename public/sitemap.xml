@@ -21,6 +21,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://x2control.com/contacto/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/contacto/"/>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://x2control.com/software-lavadero/</loc>
     <xhtml:link rel="alternate" hreflang="es-CO" href="https://x2control.com/software-lavadero/"/>
     <lastmod>2026-08-14</lastmod>

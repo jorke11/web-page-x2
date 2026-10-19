@@ -30,7 +30,7 @@ export default function BlogArticle({
               <h2 className="text-xl font-bold text-gray-900">¿Quieres organizar tu negocio con X2?</h2>
               <p className="mt-2 text-sm text-gray-600">Prueba gratis 15 días, sin tarjeta de crédito.</p>
               <a
-                href="/#contacto"
+                href="/contacto"
                 className="mt-5 inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
               >
                 Solicitar demo <ArrowRight className="w-4 h-4" />

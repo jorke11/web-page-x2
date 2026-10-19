@@ -205,7 +205,7 @@ export default function Nosotros() {
             <h2 className="text-2xl font-bold text-gray-900">¿Quieres conocer X2 en acción?</h2>
             <p className="mt-3 text-gray-600">Solicita una demo gratuita y descubre cómo automatizar tu negocio.</p>
             <a
-              href="/#contacto"
+              href="/contacto"
               className="mt-6 inline-block bg-slate-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Solicitar demo

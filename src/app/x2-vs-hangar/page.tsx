@@ -265,7 +265,7 @@ export default function X2VsHangar() {
             <h2 className="text-2xl font-bold text-gray-900">Prueba X2 gratis 15 días</h2>
             <p className="mt-3 text-gray-600">Sin tarjeta de crédito. Migramos tu catálogo de servicios sin costo.</p>
             <a
-              href="/#contacto"
+              href="/contacto"
               className="mt-6 inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Solicitar demo <ArrowRight className="w-4 h-4" />

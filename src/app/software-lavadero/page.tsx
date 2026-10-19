@@ -151,7 +151,7 @@ export default function SoftwareLavadero() {
                 electrónica DIAN desde tu celular. Sin hojas de cálculo, sin cuadernos.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <a href="/#contacto" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-500 transition-colors inline-flex items-center justify-center gap-2">
+                <a href="/contacto" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-blue-500 transition-colors inline-flex items-center justify-center gap-2">
                   Solicitar demo gratis <ArrowRight className="w-4 h-4" />
                 </a>
                 <a href="/#planes" className="border border-white/20 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/5 transition-colors">
@@ -231,7 +231,7 @@ export default function SoftwareLavadero() {
             <h2 className="text-2xl font-bold text-gray-900">Prueba X2 en tu lavadero, gratis 15 días</h2>
             <p className="mt-3 text-gray-600">Sin tarjeta de crédito. Configuración acompañada por nuestro equipo.</p>
             <a
-              href="/#contacto"
+              href="/contacto"
               className="mt-6 inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               Solicitar demo <ArrowRight className="w-4 h-4" />

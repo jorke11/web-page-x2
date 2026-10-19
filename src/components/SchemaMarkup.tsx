@@ -239,7 +239,7 @@ export default function SchemaMarkup() {
     { name: "Blog", url: `${BASE_URL}/blog/` },
     { name: "Nosotros", url: `${BASE_URL}/nosotros/` },
     { name: "Planes", url: `${BASE_URL}/#planes` },
-    { name: "Contacto", url: `${BASE_URL}/#contacto` },
+    { name: "Contacto", url: `${BASE_URL}/contacto/` },
   ];
 
   const schemaSiteNavigation = siteNavigationLinks.map((link) => ({

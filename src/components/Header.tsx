@@ -46,6 +46,7 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === '/';
   const isNosotros = pathname === '/nosotros' || pathname === '/nosotros/';
+  const isContacto = pathname === '/contacto' || pathname === '/contacto/';
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSolucionesOpen, setMobileSolucionesOpen] = useState(false);
   const [mobileRecursosOpen, setMobileRecursosOpen] = useState(false);
@@ -130,9 +131,9 @@ export default function Header() {
           </div>
 
           <a href="/nosotros" className={navLinkClass(isNosotros)}>Nosotros</a>
-          <a href={anchor('#contacto')} className="text-gray-300 hover:text-white transition-colors">Contacto</a>
+          <a href="/contacto" className={navLinkClass(isContacto)}>Contacto</a>
         </nav>
-        <a href={anchor('#contacto')} className="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors">
+        <a href="/contacto" className="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors">
           Solicitar demo
         </a>
 
@@ -221,12 +222,12 @@ export default function Header() {
             <a href="/nosotros" onClick={closeMobileMenu} className={`py-3 ${isNosotros ? 'text-white' : 'text-gray-300'}`}>
               Nosotros
             </a>
-            <a href={anchor('#contacto')} onClick={closeMobileMenu} className="py-3 text-gray-300">
+            <a href="/contacto" onClick={closeMobileMenu} className="py-3 text-gray-300">
               Contacto
             </a>
 
             <a
-              href={anchor('#contacto')}
+              href="/contacto"
               onClick={closeMobileMenu}
               className="mt-3 bg-blue-600 text-white px-5 py-3 rounded-lg font-medium text-center hover:bg-blue-500 transition-colors"
             >
