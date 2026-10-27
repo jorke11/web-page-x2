@@ -55,6 +55,13 @@ const faqLinks = [
     color: 'bg-purple-100 text-purple-600',
   },
   {
+    icon: MonitorSmartphone,
+    label: 'X2 App',
+    description: 'Accede a tu cuenta y gestiona tu lavadero desde cualquier dispositivo.',
+    href: 'https://app.x2control.com',
+    color: 'bg-blue-100 text-blue-600',
+  },
+  {
     icon: FileCheck2,
     label: 'Facturación electrónica',
     description: 'Emite y gestiona tus facturas electrónicas con cumplimiento DIAN.',
@@ -77,33 +84,84 @@ const heroBenefits = [
   { icon: Users, label: 'Mejora la experiencia de tus clientes', color: 'text-orange-400 bg-orange-500/10' },
 ];
 
-// Testimonios placeholder (del diseño de referencia) — reemplazar por reseñas reales cuando estén disponibles.
+// Reseñas reales de clientes (Google).
 const testimonials = [
   {
-    quote: 'Excelente acompañamiento durante la implementación. La plataforma es intuitiva y se adapta perfectamente a nuestras necesidades.',
-    name: 'Diego Muñoz',
-    role: 'Director Operativo',
-    company: 'DM Logística',
-    initials: 'DM',
-    color: 'bg-slate-900',
-  },
-  {
-    quote: 'X2 nos ha permitido organizar y automatizar nuestros procesos de una manera mucho más sencilla. El soporte siempre está disponible cuando lo necesitamos.',
-    name: 'Ana García',
-    role: 'Gerente Administrativa',
-    company: 'AG Constructores',
-    initials: 'AG',
-    color: 'bg-blue-600',
-  },
-  {
-    quote: 'Desde que implementamos X2, hemos reducido tiempos de trabajo y mejorado la comunicación con nuestros clientes. Totalmente recomendado.',
-    name: 'Valentina Rojas',
-    role: 'Gerente General',
-    company: 'Verde Natural',
-    initials: 'VR',
+    quote: `Desde Forza Pro Detailing recomendamos Ónix por ser una plataforma práctica y útil para la gestión de nuestro negocio. Nos ayuda a mantener la información organizada y facilita el seguimiento de la operación diaria.
+¡Gracias al equipo de Ónix por aportar herramientas que apoyan el crecimiento de nuestra empresa!
+Forza Pro Detailing`,
+    name: 'Conny Coca Jacobo',
+    role: 'CEO',
+    company: 'Forza Pro Detailing',
+    initials: 'FPD',
     color: 'bg-green-600',
+    image: '/forza.png',
+  },
+  {
+    quote: 'La app es una absoluta locura 🔥 Demasiado acertada para el negocio y sobre todo muy intuituva. Siempre estan sacando actualizaciones que mantienen la app siempre fresca y renovada para brinda la mejor experiencia tanto al cliente como al usuario.',
+    name: 'Jason Galindo',
+    role: 'CEO',
+    company: 'Macro Machine 16',
+    initials: 'MC',
+    color: 'bg-slate-900',
+    image: '/macro_machine.png',
+  },
+  {
+    quote: 'Excelente software y excelente atención ante novedades....',
+    name: 'Nick Joya',
+    role: 'CEO',
+    company: 'Cucuta Carwash Center',
+    initials: 'CC',
+    color: 'bg-blue-600',
+    image: '/cucuta.png',
   },
 ];
+
+function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = t.quote.length > 220;
+  return (
+    <figure className="flex flex-col bg-gray-50 rounded-2xl p-6 border border-gray-100 transition-shadow hover:shadow-md">
+      <div className="flex items-center justify-between">
+        <div className="flex gap-0.5" aria-label="5 de 5 estrellas">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" strokeWidth={0} />
+          ))}
+        </div>
+        <span className="text-[11px] font-medium text-gray-400">Reseña en Google</span>
+      </div>
+      <blockquote className="mt-4">
+        <p className={`text-sm text-gray-600 leading-relaxed whitespace-pre-line ${isLong && !expanded ? 'line-clamp-6' : ''}`}>
+          &ldquo;{t.quote}&rdquo;
+        </p>
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="mt-2 text-xs font-medium text-blue-600 hover:text-blue-700"
+          >
+            {expanded ? 'Ver menos' : 'Leer más'}
+          </button>
+        )}
+      </blockquote>
+      <figcaption className="mt-auto pt-6 flex items-center gap-3">
+        {t.image ? (
+          <div className="w-11 h-11 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden shrink-0">
+            <img src={t.image} alt={`Logo de ${t.company}`} className="w-full h-full object-contain p-1" />
+          </div>
+        ) : (
+          <div className={`w-11 h-11 rounded-full flex items-center justify-center text-white text-xs font-semibold shrink-0 ${t.color}`}>
+            {t.initials}
+          </div>
+        )}
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+          <p className="text-xs text-gray-500">{t.role} · {t.company}</p>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
 
 const appScreens = [
   { src: '/screen2.png', label: 'Órdenes' },
@@ -464,8 +522,8 @@ export default function Home() {
         </section>
 
         <section className="py-16 px-6 bg-white border-b border-gray-100">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_2fr] gap-10 items-center">
-            <div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto">
               <p className="text-xs font-semibold text-blue-600 tracking-wide">LA EXPERIENCIA DE NUESTROS CLIENTES</p>
               <h2 className="mt-2 text-2xl md:text-3xl font-bold text-gray-900">
                 Clientes que confían en X2
@@ -474,25 +532,9 @@ export default function Home() {
                 Más de 300 negocios ya optimizan sus operaciones con X2.
               </p>
             </div>
-            <div className="grid sm:grid-cols-3 gap-6">
+            <div className="mt-10 grid md:grid-cols-3 gap-6 items-stretch">
               {testimonials.map((t) => (
-                <div key={t.name} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                  <div className="flex gap-0.5 text-amber-400">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" strokeWidth={0} />
-                    ))}
-                  </div>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-semibold shrink-0 ${t.color}`}>
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">{t.name}</p>
-                      <p className="text-xs text-gray-500">{t.role} · {t.company}</p>
-                    </div>
-                  </div>
-                </div>
+                <TestimonialCard key={t.name} t={t} />
               ))}
             </div>
           </div>
@@ -673,7 +715,7 @@ export default function Home() {
 
         <section id="preguntas-frecuentes" className="py-20 px-6 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <div className="mb-14 grid gap-6 md:grid-cols-3">
+            <div className="mb-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {faqLinks.map(({ icon: Icon, label, description, href, color }) => (
                 <a
                   key={label}
